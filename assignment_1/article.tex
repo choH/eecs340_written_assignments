@@ -142,14 +142,77 @@ Thus, we may infer the followings from the above two \textit{Equations}:
     \text{if } k > x: \ A[i] + b \geq A[i] + B[j]  \ \ \ \Rightarrow A[i] + b > x
 \end{gather}
 
-It is a bit unintuitive about the case of $a' + b'$ for $a' \in \{A[0], A[1], ..., A[i-1]\}$ and $b' \in \{B[j+1], B[j+2], ..., B[n-1]\}$. But as the value of index $i$ ($j$) travels in an incremental (decremental) fashion in the bond of $\matthbb{Z+} \in [0, n)$; the index of $a'$ must be smaller than $i$, and the index of $b'$ must be greater than $j$. Thus, if there is any $a' + b' = x$, such loop would have been terminated immediately and we should not be able to reach to indexes $i, j$ in the \inlinecode{while} loop. Therefore, as we are now at the $i, j$ iteration of the \inlinecode{while} loop, this suggests there is no $(a', b')$ combination where $a' + b' = x$.
+It is a bit unintuitive about the case of $a' + b'$ for $a' \in \{A[0], A[1], ..., A[i-1]\}$ and $b' \in \{B[j+1], B[j+2], ..., B[n-1]\}$. But as the value of index $i$ ($j$) travels in an incremental (decremental) fashion in the bond of $\mathbb{Z^+} \in [0, n)$; the index of $a'$ must be smaller than $i$, and the index of $b'$ must be greater than $j$. Thus, if there is any $a' + b' = x$, such loop would have been terminated immediately and we should not be able to reach to indexes $i, j$ in the \inlinecode{while} loop. Therefore, as we are now at the $i, j$ iteration of the \inlinecode{while} loop, this suggests there is no $(a', b')$ combination where $a' + b' = x$.
 
 This together with \textit{Equation 10, 11}, we have proven the loop invariant as there will be no combination of $(a, b)$ where $a \in \{A[0], A[1], ..., A[i-1], A[i]\}$ and $b \in \{B[j], B[j+1], B[j+2], ..., B[n-1]\}$ to be $a + b = x$ for all \textbf{iterarted} $i, j$ within the \inlinecode{while} loop.
 
 \subsection{(d)}
-The worst case of this algorithm is when it returns \inlinecode{False}. In such case we wil have $i$ and $j$ travel the entire bond of $\matthbb{Z+} \in [0, n)$. The loop will execute $2n$ times, thus the run time is $O(n)$.
+The worst case of this algorithm is when it returns \inlinecode{False}. In such case we wil have $i$ and $j$ travel the entire bond of $\mathbb{Z^+} \in [0, n)$. The loop will execute $2n$ times, thus the run time is $O(n)$.
 
 \section{Problem 3}
+\subsection{Describe the process using a loop: Pseudocode}
+
+% l = red, p = black
+\begin{algorithm}
+\caption{Kepler442b(m, n)}\label{Kepler442b}
+\begin{algorithmic}[1]
+\Procedure{}{}
+\State $l \gets m$
+\State $p \gets n$
+\While {$(l + p) > 1$}
+    \State \text{Let two individuals fight each other.}
+    \If {\text{Both individuals are Lydians}}
+        \State $l \gets l - 1$
+    \ElsIf {\text{Both individuals are Pisidians}}
+        \State $p \gets p - 2$
+        \State $l \gets l + 1$
+    \Else
+        \State $l \gets l - 1$
+    \EndIf
+\EndWhile
+\State \Return $l, p$
+\EndProcedure
+\end{algorithmic}
+\end{algorithm}
+
+\subsection{Define loop invariant and termination}
+At the start of the $k^{th}$ iteration of the \inlinecode{while} loop, we must have
+\begin{gather}
+    l + p = m + n - (k - 1) \\
+    p\bmod 2 = n \bmod 2
+\end{gather}
+
+When the \inlinecode{while} loop terminates at $l + p = 1$ there can only be two cases:
+\begin{gather}
+    l = 1, \ p = 0 \ \ (n \bmod 2 = 0) \\
+    l = 0, \ p = 1 \ \ (n \bmod 2 = 1)
+\end{gather}
+
+Thus, we may infer that if $n$ is odd, a \textit{Pisidian} shall remain. Otherwise if $n$ is even, a \textit{Lydian} shall remain.
+
+\subsection{Proof of loop invariant}
+\subsubsection{Initialization}
+At the beginning it is known that $k = 1$ and $b = n$, thus we may have:
+
+\begin{gather}
+    l + p = m + n - (k - 1) = l + p = m + n - (1 - 1) \Rightarrow l + p = m + n \\
+    p\bmod 2 = n \bmod 2
+\end{gather}
+
+As the above two \textit{Equations} satisfy the assumption of the loop invariant, we may say that the scenario of $k = 1$ is true.
+
+\subsubsection{Maintenance}
+
+\paragraph{Case 1} As it is known that $l + p = (l - 1) + p$ and $k = k + 1$, we may conclude that $l + p + k$ must remain the same.
+
+\paragraph{Case 2} As it is known that $l + p = (l + 1) + (p - 2)$ and $k = k + 1$, we may conclude that $l + p + k$ must remain the same.
+
+\paragraph{Case 3} As it is known that $l + p = (l - 1) + p$ and $k = k + 1$, we may conclude that $l + p + k$ must remain the same.
+
+As all three cases satisfy the loop invariant of the algorithm, the induction is therefore proven to be valid.
+
+
+
 
 
 % \section{References}
