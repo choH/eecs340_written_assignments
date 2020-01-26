@@ -1,6 +1,6 @@
 \documentclass[12pt]{article}
 \usepackage{setspace}
-\setstretch{1.5}
+\setstretch{1.1}
 \usepackage{amsmath,amssymb, amsthm}
 \usepackage{graphicx}
 \usepackage{bm}
@@ -31,13 +31,77 @@
 
 \title{\textbf{EECS 340: Assignment 1}}
 
-\author{Shaochen (Henry) ZHONG, \inlinecode{sxz517} \\ Zhitao (Bobby) Chen, \inlinecode{zxc325}}
+\author{Shaochen (Henry) ZHONG, \inlinecode{sxz517} \\ Zhitao (Bobby) CHEN, \inlinecode{zxc325}}
 \date{Due on 01/27/2020, submitted on 01/26/2020 \\ EECS 340, Dr. Koyuturk}
 \maketitle
 
 \section{Problem 1}
+\subsection{(a)}
+Without loss of generality, assume $x > y$ for $x, y \in \mathbb{Z^+}$. The loop invariant is:
+
+\begin{gather}
+    Euclidean(x, y) = Euclidean(x - y, y)
+\end{gather}
+
+\subsection{(b)}
+Without loss of generality, assume $x > y$ for $x, y \in \mathbb{Z^+}$.
+
+Let $d$ for $d \in \mathbb{Z^+}$ being the greatest common divisor of $x$ and $y$, a.k.a $d = gcd(x, y)$. As $d$ being a divisor of both $x$ and $y$, we may therefore have $x = kd$ and $y = jd$ for $k, j \in \mathbb{Z^+}$. Then we may infer:
+\begin{gather}
+    x - y = dk - dj = d(k - j)
+\end{gather}
+
+From \textit{Equation 2} and the known fact that $y = jd$, we may say that $d$ is also a common divisor of $x - y$ and $y$. By the defination of $gcd$, this means the upper bond of $d$ cannot be greater than $gcd(x-y, y)$. Thus we may conclude:
+\begin{gather}
+    gcd(x, y) = d \leq gcd(x-y, y) \nonumber \\
+    \Rightarrow gcd(x, y) \leq gcd(x-y, y)
+\end{gather}
+
+Now similarly, Let $e$ for $e \in \mathbb{Z^+}$ being the greatest common divisor of $x-y$ and $y$. We may therefore have $x - y = le$ and $y = me$ for $l, m \in \mathbb{Z^+}$. Then we may infer:
+\begin{gather}
+    x = (x - y) + y = le + me = e(l + m)
+\end{gather}
+
+From \textit{Equation 4} and the known fact that $y = me$, we may say that $e$ is also a common divisor of $x$ and $y$. By the defination of $gcd$, this means the upper bond of $e$ cannot be greater than $gcd(x, y)$. Thus we may conclude:
+\begin{gather}
+    gcd(x-y, y) = e \leq gcd(x, y) \nonumber  \\
+    \Rightarrow gcd(x-y, y) \leq gcd(x, y)
+\end{gather}
+
+By observing \textit{Equation 3} and \textit{Equation 5}, we may have a constraint of $gcd(x, y) = gcd(x-y, y)$. As the given method $Euclidean()$ is a $gcd$ finder, we may promote such constraint to $Euclidean(x, y) = Euclidean(x - y, y)$ due to the equivalency of $Euclidean(a, b)$ and $gcd(a, b)$.
+
+\subsection{(c)}
+
+The \inlinecode{while} loop always terminates as the condition $x = y$ will eventually be reached. Due to the fact that we have $x$ and $y$ for $x, y \in \mathbb{Z^+}$; without loss of generality, we assume $x > y$, therefore we must have $x' = x - y$ for $x' \in \mathbb{Z^+}$.
+
+As we have only a finte amount of $x'$, $x''$, $x'''$... to decrease for $x', x'', \text{and}\ x''' \in \mathbb{Z^+}$, the decremental calculation of $x_{k+1} = x_{k} - y_{k}$\footnote{for $k$ being the numbers of iteration went through in the \inlinecode{while} loop.} will eventually reaches a condition where $x = y$ due to the ``well ordering'' nature of the natural numbers. Thus, the \inlinecode{while} loop always terminates.
+
+\subsection{(d)}
+
+In \textbf{Section 1.2}, we have proven that $gcd(x, y) = gcd(x-y, y) \Rightarrow Euclidean(x, y) = Euclidean(x - y, y)$ assuming $x > y$ for $x, y \in \mathbb{Z^+}$. Following the principle of induction, we can generalize it as:
+
+\begin{gather}
+    Euclidean(x, y) = Euclidean(x_{k+1}, y_{k+1}) \\
+    \text{for $x', y' \in \mathbb{Z^+}$ while } \nonumber \\
+    \text{$x_{k+1} = x_{k} - y_{k}$ if $x_{k} > y_{k}$ and $y_{k+1} = y_{k} - x_{k}$ if $y_{k} > x_{k}$} \nonumber
+\end{gather}
+
+Where $Euclidean(x_{k+1}, y_{k+1})$ is the greatest common divisor of $(x, y)$.\newline
+
+
+As we haven proven in \textbf{Section 1.2}, that the \inlinecode{while} loop within the $Euclidean()$ method must terminate. Combined such finding with \textit{Equation 6}, we must have a:
+\begin{gather}
+    Euclidean(a, b) = Euclidean(a_{k+1}, b_{k+1}) = Euclidean(a_{k+2}, a_{k+2})
+    % without loss of generality
+\end{gather}
+
+As we know by calculation that $Euclidean(a_{k+2}, a_{k+2}) = a_{k+2}$, $a_{k+2}$ will be the greatest common divisor of $Euclidean(a, b)$.
 
 \section{Problem 2}
+\subsection{(a)}
+\subsection{(b)}
+\subsection{(c)}
+\subsection{(d)}
 
 \section{Problem 3}
 
