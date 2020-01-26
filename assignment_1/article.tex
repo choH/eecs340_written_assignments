@@ -34,7 +34,7 @@
 
 \title{\textbf{EECS 340: Assignment 1}}
 
-\author{Shaochen (Henry) ZHONG, \inlinecode{sxz517} \\ Zhitao (Bobby) CHEN, \inlinecode{zxc325}}
+\author{Shaochen (Henry) ZHONG, \inlinecode{sxz517} \\ Zhitao (Robert) CHEN, \inlinecode{zxc325}}
 \date{Due on 01/27/2020, submitted on 01/26/2020 \\ EECS 340, Dr. Koyuturk}
 \maketitle
 
@@ -127,7 +127,26 @@ As we know by calculation that $Euclidean(a_{k+2}, a_{k+2}) = a_{k+2}$, $a_{k+2}
 
 \subsection{(b)}
 \subsection{(c)}
+If $A[i] + B[j] \neq x$, then it is impossible to have any combination $(a, b)$ where \\ $a \in \{A[0], A[1], ..., A[i-1], A[i]\}$ and $b \in \{B[j], B[j+1], B[j+2], ..., B[n-1]\}$ to \\be $a + b = x$ for all \textbf{iterarted} $i, j$ within the \inlinecode{while} loop.
+
+Assume we get $A[i] + B[j] = k$ within an interation of the \inlinecode{while} loop, we either have $k < x$ or $k > x$ (assume $A[i] + B[j] \neq x$ because otherwise the loop will be terminated and the problem will be solved). Due to the sorted nature of array $A, B$, we must have:
+\begin{gather}
+    \underbrace{A[0] \leq A[1] \leq ... \leq A[i-1]}_{a} \leq A[i]  \ \ \ \Rightarrow a \leq A[i]\\
+    \underbrace{B[n-1] \geq ... \geq B[j+2] \geq B[j+1]}_{b} \geq B[j] \ \ \ \Rightarrow b \geq B[j]
+\end{gather}
+
+Thus, we may infer the followings from the above two \textit{Equations}:
+\begin{gather}
+    \text{if } k < x: \ a + B[j] \leq A[i] + B[j]  \ \ \ \Rightarrow a + B[j] < x\\
+    \text{if } k > x: \ A[i] + b \geq A[i] + B[j]  \ \ \ \Rightarrow A[i] + b > x
+\end{gather}
+
+It is a bit unintuitive about the case of $a' + b'$ for $a' \in \{A[0], A[1], ..., A[i-1]\}$ and $b' \in \{B[j+1], B[j+2], ..., B[n-1]\}$. But as the value of index $i$ ($j$) travels in an incremental (decremental) fashion in the bond of $\matthbb{Z+} \in [0, n)$; the index of $a'$ must be smaller than $i$, and the index of $b'$ must be greater than $j$. Thus, if there is any $a' + b' = x$, such loop would have been terminated immediately and we should not be able to reach to indexes $i, j$ in the \inlinecode{while} loop. Therefore, as we are now at the $i, j$ iteration of the \inlinecode{while} loop, this suggests there is no $(a', b')$ combination where $a' + b' = x$.
+
+This together with \textit{Equation 10, 11}, we have proven the loop invariant as there will be no combination of $(a, b)$ where $a \in \{A[0], A[1], ..., A[i-1], A[i]\}$ and $b \in \{B[j], B[j+1], B[j+2], ..., B[n-1]\}$ to be $a + b = x$ for all \textbf{iterarted} $i, j$ within the \inlinecode{while} loop.
+
 \subsection{(d)}
+The worst case of this algorithm is when it returns \inlinecode{False}. In such case we wil have $i$ and $j$ travel the entire bond of $\matthbb{Z+} \in [0, n)$. The loop will execute $2n$ times, thus the run time is $O(n)$.
 
 \section{Problem 3}
 
