@@ -1,6 +1,6 @@
 \documentclass[12pt]{article}
 \usepackage{setspace}
-\setstretch{1.1}
+\setstretch{1}
 \usepackage{amsmath,amssymb, amsthm}
 \usepackage{graphicx}
 \usepackage{bm}
@@ -126,7 +126,7 @@ As we know by calculation that $Euclidean(a_{k+n}, a_{k+n}) = a_{k+n}$, $a_{k+n}
 \end{algorithmic}
 \end{algorithm}
 
-\newpage
+% \newpage
 
 \subsection{(b)}
 
@@ -242,6 +242,7 @@ This together with \textit{Equation 10, 11}, we have proven the loop invariant a
 \subsection{(d)}
 The worst case of this algorithm is when it returns \inlinecode{False}. In such case we wil have $i$ and $j$ travel the entire bond of $\mathbb{Z^+} \in [0, n)$. The loop will execute $2n$ times, thus the run time is $O(n)$.
 
+\newpage
 \section{Problem 3}
 \subsection{Describe the process using a loop: Pseudocode}
 
