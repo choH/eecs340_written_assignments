@@ -22,6 +22,9 @@
 \usepackage{wasysym}
 \newcommand{\inlinecode}{\texttt}
 \usepackage{etoolbox}
+\usepackage{algorithm}
+% \usepackage{algorithmic}
+\usepackage[noend]{algpseudocode}
 \patchcmd{\thebibliography}{\section*{\refname}}{}{}{}
 
 
@@ -99,6 +102,29 @@ As we know by calculation that $Euclidean(a_{k+2}, a_{k+2}) = a_{k+2}$, $a_{k+2}
 
 \section{Problem 2}
 \subsection{(a)}
+
+\begin{algorithm}
+\caption{TwoSum(A, B, n, x) with two pointers}\label{TwoSum}
+\begin{algorithmic}[1]
+\Procedure{}{}
+\State $j \gets n-1$
+\State $i \gets 0$
+\While {$i < n \textbf{ and } j \geq 0$}
+    \If {\textit{$A[i] + B[j] < x$}}
+        \State $i \gets i + 1$
+    \ElsIf {\textit{$A[i] + B[j] > x$}}
+        \State $j \gets j - 1$
+    \Else
+        \State \Return $i, j$
+    \EndIf
+\EndWhile
+\State \Return $False$
+\EndProcedure
+\end{algorithmic}
+\end{algorithm}
+
+
+
 \subsection{(b)}
 \subsection{(c)}
 \subsection{(d)}
