@@ -56,7 +56,7 @@ Let $d$ for $d \in \mathbb{Z^+}$ being the greatest common divisor of $x$ and $y
     x - y = dk - dj = d(k - j)
 \end{gather}
 
-From \textit{Equation 2} and the known fact that $y = jd$, we may say that $d$ is also a common divisor of $x - y$ and $y$. By the defination of $gcd$, this means the upper bond of $d$ cannot be greater than $gcd(x-y, y)$. Thus we may conclude:
+From \textit{Equation 2} and the known fact that $y = jd$, we may say that $d$ is also a common divisor of $x - y$ and $y$. By the defination of $gcd$, this means the upper bound of $d$ cannot be greater than $gcd(x-y, y)$. Thus we may conclude:
 \begin{gather}
     gcd(x, y) = d \leq gcd(x-y, y) \nonumber \\
     \Rightarrow gcd(x, y) \leq gcd(x-y, y)
@@ -67,7 +67,7 @@ Now similarly, Let $e$ for $e \in \mathbb{Z^+}$ being the greatest common diviso
     x = (x - y) + y = le + me = e(l + m)
 \end{gather}
 
-From \textit{Equation 4} and the known fact that $y = me$, we may say that $e$ is also a common divisor of $x$ and $y$. By the defination of $gcd$, this means the upper bond of $e$ cannot be greater than $gcd(x, y)$. Thus we may conclude:
+From \textit{Equation 4} and the known fact that $y = me$, we may say that $e$ is also a common divisor of $x$ and $y$. By the defination of $gcd$, this means the upper bound of $e$ cannot be greater than $gcd(x, y)$. Thus we may conclude:
 \begin{gather}
     gcd(x-y, y) = e \leq gcd(x, y) \nonumber  \\
     \Rightarrow gcd(x-y, y) \leq gcd(x, y)
@@ -221,28 +221,37 @@ Thus we have $A[i] + B[j] = 12$ for $(i, j)$ being $(2, 3)$.
 
 
 \subsection{(c)}
-If $A[i] + B[j] \neq x$, then it is impossible to have any combination $(a, b)$ where \\ $a \in \{A[0], A[1], ..., A[i-1], A[i]\}$ and $b \in \{B[j], B[j+1], B[j+2], ..., B[n-1]\}$ to \\be $a + b = x$ for all \textbf{iterarted} $i, j$ within the \inlinecode{while} loop.
+\subsubsection{Loop invariant}
+To enter the \inlinecode{while} loop with indexes $i, j$, it is impossible to have any combination of $(a, b)$ where $a \in \{A[0], A[1], ..., A[i-1]\}$ and $b \in \{B[j+1], B[j+2], ..., B[n-1]\}$ to be $a + b = x$.
 
-Assume we get $A[i] + B[j] = k$ within an interation of the \inlinecode{while} loop, we either have $k < x$ or $k > x$ (assume $A[i] + B[j] \neq x$ because otherwise the loop will be terminated and the problem will be solved). Due to the sorted nature of array $A, B$, we must have:
+\subsubsection{Initialization}
+The loop invariant is held true during the initialization, since for $i = 0$ and $j = n-1$, we must have $a = \emptyset$ and $b = \emptyset$. Thus, it is impossible to have a combination of $(a, b)$ to be $a + b = x$.
+
+\subsubsection{Maintenance}
+
+Due to the sorted nature of array $A, B$, we must have:
+
 \begin{gather}
     \underbrace{A[0] \leq A[1] \leq ... \leq A[i-1]}_{a} \leq A[i]  \ \ \ \Rightarrow a \leq A[i]\\
     \underbrace{B[n-1] \geq ... \geq B[j+2] \geq B[j+1]}_{b} \geq B[j] \ \ \ \Rightarrow b \geq B[j]
 \end{gather}
 
-Thus, we may infer the followings from the above two \textit{Equations}:
+Assume we get $A[i] + B[j] = k$ within an iteration of the \inlinecode{while} loop, we either have $k < x$ or $k > x$. In both cases, we may confidently say that there will be no $a + b = k$. As the index of $a$ must be smaller than $i$ and the index of $b$ must be greater than $j$. Thus, if there is any $a + b = x$, such loop would have been terminated immediately and we should not be able to reach to indexes $i, j$ in the \inlinecode{while} loop. Therefore, as we are now at the $i, j$ iteration of the \inlinecode{while} loop, this suggests there is no $(a, b)$ combination where $a + b = x$. By this, the loop invariant is held true for all cases within the \inlinecode{while} loop.\newline
+
+Then, to proceed the loop, we may infer the following from \textit{Equation 8} and \textit{9}:
+
 \begin{gather}
-    \text{if } k < x: \ a + B[j] \leq A[i] + B[j]  \ \ \ \Rightarrow a + B[j] < x\\
-    \text{if } k > x: \ A[i] + b \geq A[i] + B[j]  \ \ \ \Rightarrow A[i] + b > x
+    \text{if } k < x: \ a + B[j] \leq A[i] + B[j] = k  \ \ \ \Rightarrow a + B[j] < x\\
+    \text{if } k > x: \ A[i] + b \geq A[i] + B[j] = k  \ \ \ \Rightarrow A[i] + b > x
 \end{gather}
 
-It is a bit unintuitive about the case of $a' + b'$ for $a' \in \{A[0], A[1], ..., A[i-1]\}$ and $b' \in \{B[j+1], B[j+2], ..., B[n-1]\}$. But as the value of index $i$ ($j$) travels in an incremental (decremental) fashion in the bond of $\mathbb{Z^+} \in [0, n)$; the index of $a'$ must be smaller than $i$, and the index of $b'$ must be greater than $j$. Thus, if there is any $a' + b' = x$, such loop would have been terminated immediately and we should not be able to reach to indexes $i, j$ in the \inlinecode{while} loop. Therefore, as we are now at the $i, j$ iteration of the \inlinecode{while} loop, this suggests there is no $(a', b')$ combination where $a' + b' = x$.
+As there is no $(a, b)$ combination available to form a $x$, we must increse the value of index $i$ in the case of $k < x$ to achieve a hopefully greather $k'$ in the next interation; and similarly, to decrese the value of index $j$ to achieve a hopefully lesser $k'$ in the next interation. Thus, the conditional statements in the pseudocode in \textbf{Section 2.1} are justified.
 
-This together with \textit{Equation 10, 11}, we have proven the loop invariant as there will be no combination of $(a, b)$ where $a \in \{A[0], A[1], ..., A[i-1], A[i]\}$ and $b \in \{B[j], B[j+1], B[j+2], ..., B[n-1]\}$ to be $a + b = x$ for all \textbf{iterarted} $i, j$ within the \inlinecode{while} loop.
+
 
 \subsection{(d)}
-The worst case of this algorithm is when it returns \inlinecode{False}. In such case we wil have $i$ and $j$ travel the entire bond of $\mathbb{Z^+} \in [0, n)$. The loop will execute $2n$ times, thus the run time is $O(n)$.
+The worst case of this algorithm is when it returns \inlinecode{False}. In such case we will have $i$ and $j$ traveling the entire bound of $\mathbb{Z^+} \in [0, n)$. The loop will execute $2n$ times, thus the run time is $O(n)$.
 
-\newpage
 \section{Problem 3}
 \subsection{Describe the process using a loop: Pseudocode}
 
