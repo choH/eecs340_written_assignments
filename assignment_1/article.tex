@@ -140,11 +140,11 @@ As we known by calculation that $gcd(a_{k+n}, a_{k+n}) = a_{k+n}$, thus, $a_{k+n
 \end{algorithmic}
 \end{algorithm}
 
-% \newpage
+\newpage
 
 \subsection{(b)}
 
-The following is graphical demenstration of \textit{TwoSum(A, B, 5, 12)}:
+The following is graphical demenstration of \inlinecode{TwoSum(A, B, 5, 12)}:
 \tikzset{
 mymat/.style={
   matrix of math nodes,
@@ -250,7 +250,7 @@ Due to the sorted nature of array $A, B$, we must have:
     \underbrace{B[n-1] \geq ... \geq B[j+2] \geq B[j+1]}_{b} \geq B[j] \ \ \ \Rightarrow b \geq B[j]
 \end{gather}
 
-Assume we get $A[i] + B[j] = k$ within an iteration of the \inlinecode{while} loop, we either have $k < x$ or $k > x$. In both cases, we may confidently say that there will be no $a + b = k$. As the index of $a$ must be smaller than $i$ and the index of $b$ must be greater than $j$. Thus, if there is any $a + b = x$, such loop would have been terminated immediately and we should not be able to reach to indexes $i, j$ in the \inlinecode{while} loop. Therefore, as we are now at the $i, j$ iteration of the \inlinecode{while} loop, this suggests there is no $(a, b)$ combination where $a + b = x$. By this, the loop invariant is held true for all cases within the \inlinecode{while} loop.\newline
+Assume we get $A[i] + B[j] = k$ within an iteration of the \inlinecode{while} loop, we either have $k < x$ or $k > x$. In both cases, we may confidently say that there will be no $a + b = k$; as the index of $a$ must be smaller than $i$ and the index of $b$ must be greater than $j$. Thus, if there is any $a + b = x$, such loop would have been terminated immediately and we should not be able to reach to indexes $i, j$ in the \inlinecode{while} loop. Therefore, as we are now at the $i, j$ iteration of the \inlinecode{while} loop, this suggests there is no $(a, b)$ combination where $a + b = x$. By this, the loop invariant is held true for all cases within the \inlinecode{while} loop.\newline
 
 Then, to proceed the loop, we may infer the following from \textit{Equation 8} and \textit{9}:
 
@@ -259,12 +259,12 @@ Then, to proceed the loop, we may infer the following from \textit{Equation 8} a
     \text{if } k > x: \ A[i] + b \geq A[i] + B[j] = k  \ \ \ \Rightarrow A[i] + b > x
 \end{gather}
 
-As there is no $(a, b)$ combination available to form a $x$, we must increse the value of index $i$ in the case of $k < x$ to achieve a hopefully greather $k'$ in the next interation; and similarly, to decrese the value of index $j$ to achieve a hopefully lesser $k'$ in the next interation. Thus, the conditional statements in the pseudocode in \textbf{Section 2.1} are justified.
+As there is no $(a, b)$ combination available to form $a+b = x$, we must increse the value of index $i$ in the case of $k < x$ to achieve a hopefully greather $k'$ in the next interation; and similarly, to decrese the value of index $j$ to achieve a hopefully lesser $k'$ in the case of $k > x$. Thus, the conditional statements in the pseudocode in \textbf{Section 2.1} are justified, and the algorithm is proven to be correct.
 
 
 
 \subsection{(d)}
-The worst case of this algorithm is when it returns \inlinecode{False}. In such case we will have $i$ and $j$ traveling the entire bound of $\mathbb{Z^+} \in [0, n)$. The loop will execute $2n$ times, thus the run time is $O(n)$.
+The worst case of this algorithm is when it returns \inlinecode{False}. In such case we will have $i$ and $j$ traveling the entire bound of $\mathbb{Z^+} \in [0, n)$. The loop will execute $2n$ times, thus the run time is $\Theta(n)$.
 
 \section{Problem 3}
 \subsection{Describe the process using a loop: Pseudocode}
