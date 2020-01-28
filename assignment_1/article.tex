@@ -37,7 +37,7 @@
 \title{\textbf{EECS 340: Assignment 1}}
 
 \author{Shaochen (Henry) ZHONG, \inlinecode{sxz517} \\ Zhitao (Robert) CHEN, \inlinecode{zxc325}}
-\date{Due on 01/27/2020, submitted on 01/26/2020 \\ EECS 340, Dr. Koyuturk}
+\date{Due and submitted on 01/27/2020 \\ EECS 340, Dr. Koyuturk}
 \maketitle
 
 \section{Problem 1}
@@ -77,7 +77,7 @@ From \textit{Equation 2} and the known fact that $y = jd$, we may say that $d$ i
     \Rightarrow gcd(x, y) \leq gcd(x-y, y)
 \end{gather}
 
-Now similarly, Let $e$ for $e \in \mathbb{Z^+}$ being the greatest common divisor of $x-y$ and $y$. We may therefore have $x - y = le$ and $y = me$ for $l, m \in \mathbb{Z^+}$. Then we may infer:
+Now similarly, let $e$ for $e \in \mathbb{Z^+}$ being the greatest common divisor of $x-y$ and $y$. We may therefore have $x - y = le$ and $y = me$ for $l, m \in \mathbb{Z^+}$. Then we may infer:
 \begin{gather}
     x = (x - y) + y = le + me = e(l + m)
 \end{gather}
@@ -118,6 +118,7 @@ As we have proven in \textbf{Section 1.2}, that the \inlinecode{while} loop with
 As we known by calculation that $gcd(a_{k+n}, a_{k+n}) = a_{k+n}$, thus, $a_{k+n}$ will be the greatest common divisor of $(a, b)$. As the induction performed in \textit{Equation 7} according to constraints defined in \textit{Equation 6} is an exact mathematical mimic of the iterations of the given \inlinecode{Euclidean} algorithm, we may conclude that \inlinecode{Euclidean(a, b)} returns $gcd(a, b)$.
 
 \section{Problem 2}
+As suggested by Dr. Koyuturk, this is a kindly reminder to the grader that this problem is answered with the assumption of the first index of an array being $[0]$. If you'd prefer $[1]$, please let us know through Canvas comment section and we will adjust accordingly in our future submission.
 \subsection{(a)}
 
 \begin{algorithm}
@@ -271,7 +272,7 @@ The worst case of this algorithm is when it returns \inlinecode{False}. In such 
 
 % l = red, p = black
 \begin{algorithm}
-\caption{Kepler442b(m, n)}\label{Kepler442b}
+\caption{Kepler442bArena(m, n)}\label{Kepler442b}
 \begin{algorithmic}[1]
 \Procedure{}{}
 \State $l \gets m$
@@ -299,7 +300,7 @@ At the start of the $k^{th}$ iteration of the \inlinecode{while} loop, we must h
     p\bmod 2 = n \bmod 2
 \end{gather}
 
-When the \inlinecode{while} loop terminates at $l + p = 1$ there can only be two cases:
+When the \inlinecode{while} loop terminates at $l + p = 1$, there can only be two cases:
 \begin{gather}
     l = 1, \ p = 0 \ \ (n \bmod 2 = 0) \\
     l = 0, \ p = 1 \ \ (n \bmod 2 = 1)
@@ -316,7 +317,7 @@ At the beginning it is known that $k = 1$ and $b = n$, thus we may have:
     p\bmod 2 = n \bmod 2
 \end{gather}
 
-As the above two \textit{Equations} satisfy the assumption of the loop invariant, we may say that the scenario of $k = 1$ is true.
+As the above two \textit{Equations} satisfy the assumption of the loop invariant, we may say that the scenario of $k = 1$ is held true.
 
 \subsubsection{Maintenance}
 
