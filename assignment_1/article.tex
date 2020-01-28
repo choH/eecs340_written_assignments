@@ -42,14 +42,29 @@
 
 \section{Problem 1}
 \subsection{(a)}
-Without loss of generality, assume $x > y$ for $x, y \in \mathbb{Z^+}$. The loop invariant is:
+With $gcd(a, b)$ giving the greatest common divisor of $(a, b)$, the loop invariant is:
 
 \begin{gather}
-    Euclidean(x, y) = Euclidean(x - y, y)
+    gcd(a, b) = gcd(x, y) \\
+    \text{for $a, b, x, y \in \mathbb{Z^+}$}\nonumber
 \end{gather}
 
+
+
+
 \subsection{(b)}
-Without loss of generality, assume $x > y$ for $x, y \in \mathbb{Z^+}$.
+\subsubsection{Initialization}
+
+The loop invariant is held true during initialization of the \inlinecode{while} loop as we defined $x = a$ and $y = b$ in the algorithm, thus \textit{Equation 1} is perserved.
+
+\subsubsection{Maintenance}
+
+Assume we had $x, y$ in the pervious iteration, for this iteration we shall have $x', y'$. Without loss of generality, assume $x > y$, we must have the following according to the algorithm:
+\begin{gather}
+    x' = x - y \nonumber\\
+    y' = x \nonumber
+\end{gather}
+
 
 Let $d$ for $d \in \mathbb{Z^+}$ being the greatest common divisor of $x$ and $y$, a.k.a $d = gcd(x, y)$. As $d$ being a divisor of both $x$ and $y$, we may therefore have $x = kd$ and $y = jd$ for $k, j \in \mathbb{Z^+}$. Then we may infer:
 \begin{gather}
@@ -73,35 +88,34 @@ From \textit{Equation 4} and the known fact that $y = me$, we may say that $e$ i
     \Rightarrow gcd(x-y, y) \leq gcd(x, y)
 \end{gather}
 
-By observing \textit{Equation 3} and \textit{Equation 5}, we may have a constraint of $gcd(x, y) = gcd(x-y, y)$. As the given method $Euclidean()$ is a $gcd$ finder, we may promote such constraint to $Euclidean(x, y) = Euclidean(x - y, y)$ due to the equivalency of $Euclidean(a, b)$ and $gcd(a, b)$.
+By observing \textit{Equation 3} and \textit{Equation 5}, we may conclude $gcd(x, y) = gcd(x-y, y)$. As we have discovered $x' = x - y$ and $y' = y$ earlier in this section, this means $gcd(x, y) = gcd(x-y, y) = gcd(x', y')$. Thus, the loop invariant is held true during the maintenance of the \inlinecode{while} loop.
 
 \subsection{(c)}
 
-The \inlinecode{while} loop always terminates as the condition $x = y$ will eventually be reached. Due to the fact that we have $x$ and $y$ for $x, y \in \mathbb{Z^+}$; without loss of generality, we assume $x > y$, therefore we must have $x' = x - y$ for $x' \in \mathbb{Z^+}$.
+The \inlinecode{while} loop always terminates as the condition $x = y$ will eventually be reached. Due to the fact that we have $x$ and $y$ for $x, y \in \mathbb{Z^+}$; without loss of generality, we assume $x > y$, therefore we must have $x' = x - y$  and for $x' \in \mathbb{Z^+}$.
 
-As we have only a finte amount of $x'$, $x''$, $x'''$... to decrease for $x', x'', \text{and}\ x''' \in \mathbb{Z^+}$, the decremental calculation of $x_{k+1} = x_{k} - y_{k}$\footnote{for $k$ being the numbers of iteration went through in the \inlinecode{while} loop.} will eventually reaches a condition where $x = y$ due to the ``well ordering'' nature of the natural numbers. Thus, the \inlinecode{while} loop always terminates.
+As we have only a finte amount of $x'$, $x''$, $x'''$... to decrease in the bound of $\mathbb{Z^+} \in [0, x]$, the decremental calculation of $x_{k+1} = x_{k} - y_{k}$\footnote{for $k$ being the numbers of iteration went through in the \inlinecode{while} loop.} will eventually reaches a condition where $x = y$ due to the ``well ordering'' nature of the natural numbers. Thus, the \inlinecode{while} loop always terminates.
 
 \subsection{(d)}
 
-In \textbf{Section 1.2}, we have proven that $gcd(x, y) = gcd(x-y, y) \Rightarrow Euclidean(x, y) = Euclidean(x - y, y)$ assuming $x > y$ for $x, y \in \mathbb{Z^+}$. Following the principle of induction, we can generalize it as:
+In \textbf{Section 1.2}, we have proven that $gcd(x, y) = gcd(x-y, y)$ assuming $x > y$ for $x, y \in \mathbb{Z^+}$. Following the principle of induction, we can generalize it as:
 
 \begin{gather}
-    Euclidean(x_k, y_k) = Euclidean(x_{k+1}, y_{k+1}) \\
-    \text{for $x', y' \in \mathbb{Z^+}$ while } \nonumber \\
+    gcd(x_k, y_k) = gcd(x_{k+1}, y_{k+1}) \\
+    \text{for $x', y' \in \mathbb{Z^+}$,  while } \nonumber \\
     \text{$x_{k+1} = x_{k} - y_{k}$, $y_{k+1} = y_{k}$ \ \ \  if $x_{k} > y_{k}$} \nonumber \\
     \text{$y_{k+1} = y_{k} - x_{k}$, $x_{k+1} = x_{k}$ \ \ \  if $y_{k} > x_{k}$} \nonumber
 \end{gather}
 
-Where $Euclidean(x_{k+1}, y_{k+1})$ is the greatest common divisor of $(x, y)$.\newline
 
 
-As we haven proven in \textbf{Section 1.2}, that the \inlinecode{while} loop within the $Euclidean()$ method must terminate. Combined such finding with \textit{Equation 6}, we must also have a:
+As we have proven in \textbf{Section 1.2}, that the \inlinecode{while} loop within the algorithm must terminate. Combined such finding with \textit{Equation 6}, we must also have a:
 \begin{gather}
-    Euclidean(a, b) = Euclidean(a_{k}, b_{k}) = Euclidean(a_{k+1}, b_{k+1}) = ... \\ ... = Euclidean(a_{k+n}, b_{k+n}) = Euclidean(a_{k+n}, a_{k+n}) \nonumber
+    gcd(a, b) = gcd(a_{k}, b_{k}) = gcd(a_{k+1}, b_{k+1}) = ... \\ ... = gcd(a_{k+n}, b_{k+n}) = gcd(a_{k+n}, a_{k+n}) \nonumber
     % without loss of generality
 \end{gather}
 
-As we know by calculation that $Euclidean(a_{k+n}, a_{k+n}) = a_{k+n}$, $a_{k+n}$, this will be the greatest common divisor of $Euclidean(a, b)$.
+As we known by calculation that $gcd(a_{k+n}, a_{k+n}) = a_{k+n}$, thus, $a_{k+n}$ will be the greatest common divisor of $(a, b)$. As the induction performed in \textit{Equation 7} according to constraints defined in \textit{Equation 6} is an exact mathematical mimic of the iterations of the given \inlinecode{Euclidean} algorithm, we may conclude that \inlinecode{Euclidean(a, b)} returns $gcd(a, b)$.
 
 \section{Problem 2}
 \subsection{(a)}
