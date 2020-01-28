@@ -59,7 +59,7 @@ The loop invariant is held true during initialization of the \inlinecode{while} 
 
 \subsubsection{Maintenance}
 
-Assume we had $x, y$ in the pervious iteration, for this iteration we shall have $x', y'$. Without loss of generality, assume $x > y$, we must have the following according to the algorithm:
+Assume we had $x, y$ in the previous iteration, for this iteration we shall have $x', y'$. Without loss of generality, assume $x > y$, we must have the following according to the algorithm:
 \begin{gather}
     x' = x - y \nonumber\\
     y' = x \nonumber
@@ -259,12 +259,12 @@ Then, to proceed the loop, we may infer the following from \textit{Equation 8} a
     \text{if } k > x: \ A[i] + b \geq A[i] + B[j] = k  \ \ \ \Rightarrow A[i] + b > x
 \end{gather}
 
-As there is no $(a, b)$ combination available to form $a+b = x$, we must increse the value of index $i$ in the case of $k < x$ to achieve a hopefully greather $k'$ in the next interation; and similarly, to decrese the value of index $j$ to achieve a hopefully lesser $k'$ in the case of $k > x$. Thus, the conditional statements in the pseudocode in \textbf{Section 2.1} are justified, and the algorithm is proven to be correct.
+As there is no $(a, b)$ combination available to form $a+b = x$, we must increase the value of index $i$ in the case of $k < x$ to achieve a hopefully greater $k'$ in the next iteration; and similarly, to decrease the value of index $j$ to achieve a hopefully lesser $k'$ in the case of $k > x$. Thus, the conditional statements in the pseudocode in \textbf{Section 2.1} are justified, and the algorithm is proven to be correct.
 
 
 
 \subsection{(d)}
-The worst case of this algorithm is when it returns \inlinecode{False}. In such case we will have $i$ and $j$ traveling the entire bound of $\mathbb{Z^+} \in [0, n)$. The loop will execute $2n$ times, thus the run time is $\Theta(n)$.
+The worst case of this algorithm is when it returns \inlinecode{False}. In such case, we will have $i$ and $j$ traveling the entire bound of $\mathbb{Z^+} \in [0, n)$. The loop will execute $2n$ times; thus the run time is $\Theta(n)$.
 
 \section{Problem 3}
 \subsection{Describe the process using a loop: Pseudocode}
@@ -305,7 +305,7 @@ When the \inlinecode{while} loop terminates at $l + p = 1$ there can only be two
     l = 0, \ p = 1 \ \ (n \bmod 2 = 1)
 \end{gather}
 
-Thus, we may infer that if $n$ is odd, a \textit{Pisidian} shall remain. Otherwise if $n$ is even, a \textit{Lydian} shall remain.
+Thus, we may infer that if $n$ is odd, a \textit{Pisidian} shall remain. Otherwise, if $n$ is even, a \textit{Lydian} shall remain.
 
 \subsection{Proof of loop invariant}
 \subsubsection{Initialization}
