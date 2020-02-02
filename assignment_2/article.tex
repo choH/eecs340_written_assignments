@@ -211,6 +211,48 @@ As $c, n_{0}$ are constants, there must be a constant $c'$ s.t.
 Thus we may conclude $log(f(n)) = O(\log(g(n))$, the statement is therefore proven to be valid.
 
 
+% % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % %
+% % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % %
+% % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % %
+\subsection{(d1) $f(2n) = \Theta(f(n))$}
+
+Since it is known that $f(n) \geq 0$, $g(n) \geq 0$, and $c > 0$; we must have a constant $c' > 0$ which satisfy:
+
+\paragraph{Case 1} Assume $f(n) \neq 0$.
+
+
+\begin{gather}
+    c' \geq \frac{f(2n)}{f(n)} \\
+    \Rightarrow f(2n) \leq c'(f(n))
+\end{gather}
+
+Thus we may conclude $f(2n) = O(f(n))$.
+
+Similarly, we may also have a constant $c'' > 0$ which satisfy:
+
+
+\begin{gather}
+    c'' \leq \frac{f(2n)}{f(n)} \\
+    \Rightarrow f(2n) \geq c''(f(n))
+\end{gather}
+
+Thus we may conclude $f(2n) = \Omega(f(n))$.\newline
+
+Since both the $O$- and $\Omega$-notation are established, we may therefore conclude $f(2n) = \Theta(f(n))$ in this case.
+
+\paragraph{Case 1} Assume $f(n) = 0$ for $\all n$.
+
+Thus we must have two constants $k_{1}, k_{2}$ which satisfy:
+\begin{gather}
+    f(2n) = 0 \\
+    k_{1}(0) \leq f(2n) \leq k_{2}f(n)\Rightarrow k_{1}(0) \leq 0 \leq k_{2}(0), \ \forall k \in \mathbb{R^+}
+\end{gather}
+
+Thus we may conclude $f(2n) = \Theta(f(n))$.\newline
+
+
+Since both cases reach to the conclusion of $f(2n) = \Theta(f(n))$, we have proven the statement to be valid.
+
 
 
 \section{Problem 2}
