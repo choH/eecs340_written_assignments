@@ -183,6 +183,34 @@ Since both cases reach to the conclusion of $log(f(n)) = O(\log(g(n))$, we have 
 
 
 
+According to the defination of $O$-notation, we must have:
+
+\begin{gather}
+    \exists c, n_{0} > 0 \ \text{ s.t. } \ f(n) \leq cg(n) \ \ \ \text{for $n \geq n_{0}$}
+\end{gather}
+
+
+Since it is given that $\log(f(n))\geq 0$, $\log(g(n)) \geq 1 $, thus we must have:
+
+\begin{gather}
+    \log(f(n)) \leq \log(c(g(n))) \ \ \ \text{for $n \geq n_{0}$} \nonumber\\
+    \Rightarrow \log(f(n)) \leq \log c + \log(g(n)) \ \ \ \text{for $n \geq n_{0}$}
+\end{gather}
+
+As $c, n_{0}$ are constants, there must be a constant $c'$ s.t.
+
+
+\begin{gather}
+    c' \geq \frac{\log c}{\log (g(n_{0}))} + 1 \\
+    \Rightarrow (c' -1)\log (g(n))  \ \geq \ (c' -1)\log (g(n_{0})) \ \geq \ \log c \ \ \ \text{for $n \geq n_{0}$} \\
+    \exists c, n_{0} > 0 \nonumber \ \text{ s.t. } \  \\
+    \log(f(n)) \ \leq \ \log c + \log(g(n)) \ \leq \  (c' -1)\log (g(n)) + \log(g(n))\ \ \ \text{for $n \geq n_{0}$} \\
+    \Rightarrow \log(f(n))  \leq c'\log (g(n))
+\end{gather}
+
+Thus we may conclude $log(f(n)) = O(\log(g(n))$, the statement is therefore proven to be valid.
+
+
 
 
 \section{Problem 2}
