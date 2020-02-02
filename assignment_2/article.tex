@@ -265,6 +265,15 @@ Please refer to proof at \textbf{d3} as it provides a broader proof base on $f(n
 
 \section{Problem 2}
 
+\paragraph{Answer}
+
+\begin{gather}
+    \frac{1}{n^a} \ll \frac{1}{n^\epsilon} \ll \log(\frac{1}{\epsilon}n) \text{ \ (when $0 < \epsilon < \frac{1}{2}$)} \ll \log(n^\epsilon) \equiv \log(bn) \equiv \log(n^a) \\
+    \equiv \log(n^b) \equiv \log(\frac{1}{\epsilon}n) \text{ \ (when $\epsilon \geq \frac{1}{2}$)} \ll (\log n)^a \ll n^{\epsilon} \\
+    \ll a^{log_a(n)} \equiv \epsilon n \equiv \frac{n}{a} \ll n^a \equiv (n+b)^a\\
+    \ll (n+a)^b \ll n^{a+b} \ll \epsilon^n \ll a^{\epsilon n} \equiv a^n \ll b^n
+\end{gather}
+
 
 % \section{References}
 %
@@ -272,6 +281,8 @@ Please refer to proof at \textbf{d3} as it provides a broader proof base on $f(n
 % \raggedright
 % \bibliography{references.bib}
 % \bibliographystyle{plain}
+
+
 
 
 \end{document}
