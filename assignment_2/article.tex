@@ -77,6 +77,44 @@ Since both the $O$- and $\Omega$-notation are established, we may therefore conc
     \max(f(n), g(n)) \in \Theta (f(n) + g(n))
 \end{gather}
 
+
+% % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % %
+% % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % %
+% % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % %
+\subsection{(b1) $f(n) + d = O(f(n))$.}
+
+For the seek of disambiguation, we rewrite the questioned equation as $f(n) + d = O(f(n))$ by $d$ replacing $c$ for $d > 0$.
+
+
+According to the defination of $O$-notation, we have:
+
+\begin{gather}
+    f(n) = O(f(n)) \nonumber\\
+    \exists c, n_{0} > 0 \ \text{ s.t.  $0 \leq f(n) \leq cf(n)$ \ \ \ for $n \geq n_{0}$} \\
+    \exists n' > 0 \ \text{ s.t.  $f(n) \geq f(n')$ \ \ \ for $n, n' \geq n_{0}$} \\
+    \Rightarrow 0 \leq f(n)+d \leq cf(n) + d \ \ \ \text{for $n \geq n_{0}$}
+\end{gather}
+
+Due to \textit{Equation 5}, we may rewrite \textit{Euqation 6} as:
+
+
+\begin{gather}
+    0 \leq f(n)+d \leq (c + \frac{d}{f(n)})f(n) \nonmumber\\
+    \Rightarrow 0 \leq f(n)+d \ \leq \ c'f(n) \ \ \ \text{for } \begin{cases}
+                    c' = c + \frac{d}{f(n')} \\
+                    n, n' \geq n_{0}
+                \end{cases}
+\end{gather}
+
+Based \textit{Euqation 8}, we may conclude $f(n) + d = O(f(n))$ via direct proof.
+
+
+% % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % %
+% % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % %
+% % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % %
+\subsection{(b2) If $f(n) \geq 1$, then $f(n) + c = O(f(n))$.}
+
+Please refer to proof at \textbf{b1} as it provides a broader proof base on $f(n)$ regardless $f(n) \geq 1$ or not.
 \section{Problem 2}
 
 
