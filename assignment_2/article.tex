@@ -29,6 +29,10 @@
 \usetikzlibrary{matrix,positioning,arrows.meta,arrows}
 \patchcmd{\thebibliography}{\section*{\refname}}{}{}{}
 
+\makeatletter
+\renewcommand{\@seccntformat}[1]{}
+\makeatother
+
 
 \begin{document}
 
@@ -41,6 +45,37 @@
 \maketitle
 
 \section{Problem 1}
+
+% % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % %
+% % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % %
+% % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % %
+\subsection{(a) $max\{f(n), g(n)\} = \Theta (f(n) + g(n))$}
+
+Since it is known that $f(n) \geq 0$, $g(n) \geq 0$, and $c > 0$; we must have:
+
+\begin{gather}
+    f(n) \leq f(n) + g(n) \nonumber\\
+    g(n) \leq f(n) + g(n) \nonumber\\
+    \Rightarrow \max(f(n), g(n)) \in O(f(n) + g(n)) \ \ \ \text{for } \begin{cases}
+                    c = 1 \\
+                    \forall{n_{0}} \in \mathbb{R}
+                \end{cases}
+\end{gather}
+
+Since it is also known that $f(n) + g(n) \leq 2 \cdot \max(f(n),g(n))$, we may therefore infer:
+
+\begin{gather}
+    \max(f(n), g(n)) \in \Omega(f(n) + g(n)) \ \ \ \text{for } \begin{cases}
+        c = \frac{1}{2} \\
+        \forall{n_{0}} \in \mathbb{R}
+    \end{cases}
+\end{gather}
+
+Since both the $O$- and $\Omega$-notation are established, we may therefore conclude:
+
+\begin{gather}
+    \max(f(n), g(n)) \in \Theta (f(n) + g(n))
+\end{gather}
 
 \section{Problem 2}
 
