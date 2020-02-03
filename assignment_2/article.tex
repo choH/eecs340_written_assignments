@@ -263,9 +263,30 @@ Thus we may conclude if $f(n) = O(n^k)$, then $f(2n) = O(n^k)$.
 % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % %
 % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % %
 % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % %
-\subsection{(d3) If $f(n) = \Theta(n^c)$, then $f(2n) = \Theta(f(n))$}
-Please refer to proof at \textbf{d3} as it provides a broader proof base on $f(n)$ regardless $f(n) = \Theta(n^c)$ or not.
+\subsection{(d3) If $f(n) = \Theta(n^k)$, then $f(2n) = \Theta(f(n))$}
 
+For the seek of disambiguation, we rewrite the questioned equation as: if $f(n) = \Theta(n^k)$, then $f(2n) = \Theta(f(n))$.
+
+Since $f(n) = \Theta(n^k)$, we must have $0 \leq c_1 \cdot n^k \leq f(n) \leq c_2 \cdot n^k$ for $n \geq n_0$ and $c_1, c_2$ for $c_1, c_2 \in \mathbb{R^+}$. Now substitute $n$ as $2n$, we may have:
+
+\begin{gather}
+    0 \leq c_1 (2n)^k \leq f(2n) \leq c_2 (2n)^k \nonumber \\
+    \Rightarrow 0 \leq c_1 \cdot 2^k \cdot n^k \leq f(2n) \leq c_2 \cdot 2^k \cdot n^k
+\end{gather}
+
+From $0 \leq c_1 \cdot n^k \leq f(n) \leq c_2 \cdot n^k$ , we may also infer:
+
+\begin{gather}
+    \frac{f(n)}{c_1} \geq k \geq \frac{f(n)}{c_2} \\
+    \Rightarrow c_1 \cdot 2^k \cdot \frac{f(n)}{c_2} \leq f(2n) \leq c_2 \cdot 2^k \cdot \frac{f(n)}{c_1} \\
+    \Rightarrow 0\leq c^{'}_{1}\cdot f(n) \leq f(2n) \leq c^{'}_{2}\cdot f(2n) \ \ \ \text{for}\begin{cases}
+                    c^{'}_{1} = \frac{c_1 \cdot 2^k}{c_2} \\
+                    c^{'}_{2} = \frac{c_2 \cdot 2^k}{c_1}
+                \end{cases}
+\end{gather}
+
+
+Thus we may conclude if $f(n) = \Theta(n^k)$, then $f(2n) = \Theta(f(n))$.
 
 \section{Problem 2}
 
