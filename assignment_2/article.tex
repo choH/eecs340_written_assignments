@@ -181,7 +181,7 @@ Since $\log (g(n_{0})) = 0$, we shall infer that $g(n_{0}) = 1$. We may arbitrar
     \log c \leq (c' - 1) \cdot \log(g(n_{0}))
 \end{gather}
 
-Since $n \geq n_{0}$ by defination, and known that $g(n) \geq 1$ due to $\log(g(n)) \geq 0$; therefore there must be $g(n) \geq g(n_{0})$. Putting this into the context of \textit{Equation 12}, we may have:
+Since $n \geq n_{0}$ by defination, and known that $g(n) \geq 1$ due to $\log(g(n)) \geq 0$; therefore there must be $g(n) \geq g(n_{0})$. Putting this into the context of problem statement, we may have:
 
 \begin{gather}
     \log(f(n)) \leq \log c + \log(g(n)) \ \ \ \text{for $n \geq n_{0}$} \nonumber \\
@@ -244,9 +244,21 @@ For $f(n) = 2^n$, we have $f(2n) = 4^n$. Where $f(2n) \neq \Theta(f(n))$ due to 
 % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % %
 % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % %
 % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % %
-\subsection{(d2) If $f(n) = O(n^c)$, then $f(2n) = O(n^c)$}
+\subsection{(d2) If $f(n) = O(n^k)$, then $f(2n) = O(n^k)$}
 
-As It is known from \textbf{d1} that $f(2n) = \Theta(f(n))$, which implies $f(2n) = O(f(n))$. Also it is given that $f(n) = O(n^c)$. Together, we shall infer $f(2n) = O(n^c)$ due to the transitivity property of $\Theta$- and $O$-notations.
+
+For the seek of disambiguation, we rewrite the questioned equation as: if $f(n) = O(n^k)$, then $f(2n) = O(n^k)$ by $k$ replacing $c$ for $k > 0$.
+
+
+Since $f(n) = O(n^k)$, we must have $0 \leq f(n) \leq cn^k$ for $n \geq n_0$ and a $c$ for $c \in \mathbb{R^+}$. Now substitute $n$ as $2n$, we may have:
+
+\begin{gather}
+    0 \leq f(2n) \leq c(2n)^k \nonumber \\
+    \Rightarrow 0 \leq f(2n) \leq c\cdot (2)^k \cdot n^k \\
+    \Rightarrow 0 \leq f(2n) \leq c' \cdot n^k \ \ \ \text{where $c' = c\cdot (2)^k$}
+\end{gather}
+
+Thus we may conclude if $f(n) = O(n^k)$, then $f(2n) = O(n^k)$.
 
 % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % %
 % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % %
