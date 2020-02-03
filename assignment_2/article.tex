@@ -83,30 +83,25 @@ Since both the $O$- and $\Omega$-notation are established, we may therefore conc
 % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % %
 \subsection{(b1) $f(n) + d = O(f(n))$.}
 
+\textbf{False}
+
 For the seek of disambiguation, we rewrite the questioned equation as $f(n) + d = O(f(n))$ by $d$ replacing $c$ for $d > 0$.
 
-
-According to the defination of $O$-notation, we have:
-
-\begin{gather}
-    f(n) = O(f(n)) \nonumber\\
-    \exists c, n_{0} > 0 \ \text{ s.t.  $0 \leq f(n) \leq cf(n)$ \ \ \ for $n \geq n_{0}$} \\
-    \exists n' > 0 \ \text{ s.t.  $f(n) \geq f(n')$ \ \ \ for $n, n' \geq n_{0}$} \\
-    \Rightarrow 0 \leq f(n)+d \leq cf(n) + d \ \ \ \text{for $n \geq n_{0}$}
-\end{gather}
-
-Due to \textit{Equation 5}, we may rewrite \textit{Euqation 6} as:
-
+To prove the statement to be valid, we need to show:
 
 \begin{gather}
-    0 \leq f(n)+d \leq (c + \frac{d}{f(n)})f(n) \nonmumber\\
-    \Rightarrow 0 \leq f(n)+d \ \leq \ c'f(n) \ \ \ \text{for } \begin{cases}
-                    c' = c + \frac{d}{f(n')} \\
-                    n, n' \geq n_{0}
-                \end{cases}
+    0 \leq f(n) + d \leq cf(n)
 \end{gather}
 
-Based \textit{Euqation 8}, we may conclude $f(n) + d = O(f(n))$ via direct proof.
+
+For $f(n) = 0$, we cannot find any $c$ which satisfies the above equation since:
+
+\begin{gather}
+    O(f(n)) = cf(n) = 0  \nonumber \\
+    \Rightarrow 0 \leq 0 + d \leq c(0) \ \ \ \text{for $d > 0$}
+\end{gather}
+
+As the equation $0 + d \leq 0$ leads to a contradiction, the statement is invalid.
 
 
 % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % %
