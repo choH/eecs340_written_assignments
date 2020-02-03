@@ -142,59 +142,15 @@ Therefore, we may conclude if $f(n) \geq 1$, then $f(n) + d = O(f(n))$ via direc
 % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % %
 \subsection{(c1) If $f(n) = O(g(n)), \log(f(n)) \geq 0$ and $\log(g(n)) \geq 0$, then $log(f(n)) = O(\log(g(n))$.}
 
-According to the defination of $O$-notation, we must have:
+\textbf{False}
+
+For $f(n) = 2$ and $g(n) = 1$, then $\log f(n) = 1$ and $\log g(n) = 0$. Since we cannot find any constant $c$ where:
 
 \begin{gather}
-    \exists c, n_{0} > 0 \ \text{ s.t. } \ f(n) \leq cg(n) \ \ \ \text{for $n \geq n_{0}$}
+    0 \leq 1 \leq c(0)
 \end{gather}
 
-
-Since it is given that $\log(f(n)), \log(g(n)) \geq 0$, thus we must have:
-
-\begin{gather}
-    \log(f(n)) \leq \log(c(g(n))) \ \ \ \text{for $n \geq n_{0}$} \nonumber\\
-    \Rightarrow \log(f(n)) \leq \log c + \log(g(n)) \ \ \ \text{for $n \geq n_{0}$}
-\end{gather}
-
-As $c, n_{0}$ are constants, there must be a constant $c'$ s.t.
-
-\paragraph{Case 1} Assume $\log (g(n_{0})) \neq 0$:
-
-\begin{gather}
-    c' \geq \frac{\log c}{\log (g(n_{0}))} + 1 \\
-    \Rightarrow (c' -1)\log (g(n))  \ \geq \ (c' -1)\log (g(n_{0})) \ \geq \ \log c \ \ \ \text{for $n \geq n_{0}$} \\
-    \exists c, n_{0} > 0 \nonumber \ \text{ s.t. } \  \\
-    \log(f(n)) \ \leq \ \log c + \log(g(n)) \ \leq \  (c' -1)\log (g(n)) + \log(g(n))\ \ \ \text{for $n \geq n_{0}$} \\
-    \Rightarrow \log(f(n))  \leq c'\log (g(n))
-\end{gather}
-
-Thus we may conclude $log(f(n)) = O(\log(g(n))$ for this case.
-
-
-\paragraph{Case 2} Assume $\log (g(n_{0})) = 0$:
-
-Since $\log (g(n_{0})) = 0$, we shall infer that $g(n_{0}) = 1$. We may arbitrarily pick some constants $c, c'$ where:
-
-\begin{gather}
-    \log c \leq 0 \nonumber\\
-    \log c \leq (c' - 1) \cdot 0 \nonumber\\
-    \log c \leq (c' - 1) \cdot \log(g(n_{0}))
-\end{gather}
-
-Since $n \geq n_{0}$ by defination, and known that $g(n) \geq 1$ due to $\log(g(n)) \geq 0$; therefore there must be $g(n) \geq g(n_{0})$. Putting this into the context of problem statement, we may have:
-
-\begin{gather}
-    \log(f(n)) \leq \log c + \log(g(n)) \ \ \ \text{for $n \geq n_{0}$} \nonumber \\
-    \Rightarrow \log(f(n)) \leq (c' - 1) \cdot \log(g(n_{0})) + \log(g(n)) \nonumber \\
-    \Rightarrow \log(f(n)) \leq (c' - 1) \cdot \log(g(n)) + \log(g(n)) \nonumber \\
-    \Rightarrow \log(f(n)) \leq c'\log(g(n))
-\end{gather}
-
-Thus we may conclude $log(f(n)) = O(\log(g(n))$ for this case.\newline
-
-Since both cases reach to the conclusion of $log(f(n)) = O(\log(g(n))$, we have proven the statement to be valid.
-
-
+Thus the statement is invalid.
 
 % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % %
 % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % %
