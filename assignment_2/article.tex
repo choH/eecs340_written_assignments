@@ -107,9 +107,34 @@ As the equation $0 + d \leq 0$ leads to a contradiction, the statement is invali
 % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % %
 % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % %
 % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % %
-\subsection{(b2) If $f(n) \geq 1$, then $f(n) + c = O(f(n))$.}
+\subsection{(b2) If $f(n) \geq 1$, then $f(n) + d = O(f(n))$.}
 
-Please refer to proof at \textbf{b1} as it provides a broader proof base on $f(n)$ regardless $f(n) \geq 1$ or not.
+For the seek of disambiguation, we rewrite the questioned equation as $f(n) + d = O(f(n))$ by $d$ replacing $c$ for $d > 0$.
+
+
+According to the defination of $O$-notation, we have:
+
+\begin{gather}
+ f(n) = O(f(n)) \nonumber\\
+ \exists c, n_{0} > 0 \ \text{ s.t.  $0 \leq f(n) \leq cf(n)$ \ \ \ for $n \geq n_{0}$} \\
+ \exists n' > 0 \ \text{ s.t.  $f(n) \geq f(n')$ \ \ \ for $n, n' \geq n_{0}$} \\
+ \Rightarrow 0 \leq f(n)+d \leq cf(n) + d \ \ \ \text{for $n \geq n_{0}$}
+\end{gather}
+
+Thus, we may rewrite the above equation as:
+
+
+\begin{gather}
+ 0 \leq f(n)+d \leq (c + \frac{d}{f(n)})f(n) \ \ \ \text{for $f(n) \geq 1$} \nonmumber\\
+ \Rightarrow 0 \leq f(n)+d \ \leq \ c'f(n) \ \ \ \text{for } \begin{cases}
+                 c' = c + \frac{d}{f(n')} \\
+                 n, n' \geq n_{0}
+             \end{cases}
+\end{gather}
+
+Therefore, we may conclude if $f(n) \geq 1$, then $f(n) + d = O(f(n))$ via direct proof.
+
+
 
 
 % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % %
