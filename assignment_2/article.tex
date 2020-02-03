@@ -153,7 +153,7 @@ Thus we may conclude $log(f(n)) = O(\log(g(n))$ for this case.
 
 \paragraph{Case 2} Assume $\log (g(n_{0})) = 0$:
 
-Since $\log (g(n_{0})) = 0$, we shall infer that $g(n_{0}) = 1$. We may arbitrarily pick some constants $c, c'}$ where:
+Since $\log (g(n_{0})) = 0$, we shall infer that $g(n_{0}) = 1$. We may arbitrarily pick some constants $c, c'$ where:
 
 \begin{gather}
     \log c \leq 0 \nonumber\\
@@ -268,12 +268,52 @@ Please refer to proof at \textbf{d3} as it provides a broader proof base on $f(n
 \paragraph{Answer}
 
 \begin{gather}
-    \frac{1}{n^a} \ll \frac{1}{n^\epsilon} \ll \log(\frac{1}{\epsilon}n) \text{ \ (when $0 < \epsilon < \frac{1}{2}$)} \ll \log(n^\epsilon) \equiv \log(bn) \equiv \log(n^a) \\
-    \equiv \log(n^b) \equiv \log(\frac{1}{\epsilon}n) \text{ \ (when $\epsilon \geq \frac{1}{2}$)} \ll (\log n)^a \ll n^{\epsilon} \\
-    \ll a^{log_a(n)} \equiv \epsilon n \equiv \frac{n}{a} \ll n^a \equiv (n+b)^a\\
+    \frac{1}{n^a} \ll \frac{1}{n^\epsilon} \ll \log_{\frac{1}{\epsilon}}(n) \text{ \ (when $0 < \epsilon < \frac{1}{2}$)} \ll \log(n^\epsilon) \equiv \log(bn) \equiv \log(n^a) \\
+    \equiv \log(n^b) \leq \log_{\frac{1}{\epsilon}}(n) \text{ \ (when $\epsilon \geq \frac{1}{2}$)} \ll (\log n)^a \ll n^{\epsilon} \\
+    \ll a^{\log_a(n)} \equiv \epsilon n \equiv \frac{n}{a} \ll n^a \equiv (n+b)^a\\
     \ll (n+a)^b \ll n^{a+b} \ll \epsilon^n \ll a^{\epsilon n} \equiv a^n \ll b^n
 \end{gather}
 
+
+\paragraph{Justification of $\log(n^\epsilon) \equiv \log(bn) \equiv \log(n^a) \equiv \log(n^b)$\newline}
+
+The above equations can be rewrite as:
+
+\begin{gather}
+    \log(n^\epsilon) = \epsilon \log(n) \\
+    \log(n^a) = a \log(n) \\
+    \log(bn) = \log(b) + \log(n) \\
+    \log(n^b) = b \log(n)
+\end{gather}
+
+Where all of them can be generalized as $\Theta(\log(n))$, as it is known that $n^\epsilon \leq bn \leq n^a$ due to the decending of \textit{power(s)}.
+
+\paragraph{Justification of $ \log_{\frac{1}{\epsilon}}(n) \text{ \ (when $0 < \epsilon < \frac{1}{2}$)} \equiv \log(n^b) \leq \log_{\frac{1}{\epsilon}}(n) \text{ \ (when $\epsilon \geq \frac{1}{2}$)}$\newline}
+
+
+It is known that when $\epsilon < \frac{1}{2} \Rightarrow \frac{1}{\epsilon} \geq 2$; when $\epsilon \geq \frac{1}{2} \Rightarrow  \frac{1}{\epsilon} \leq 2$. Since it is observable that $\log_{x}(n) \gg \log_{x'}(n)$ for $x < x'$, such (in)equaility is valid.
+
+
+\paragraph{Justification of $a^{\log_a(n)} \equiv \epsilon n \equiv \frac{n}{a}$\newline}
+
+The above equations can be rewrite as:
+\begin{gather}
+    a^{\log_a(n)} = n^1 = \Theta(n) \\
+    \epsilon n = \Theta(n) \\
+    frac{n}{a} = \frac{1}{a}n =  \Theta(n)
+\end{gather}
+
+Thus, the above equality is justified.
+
+\paragraph{Justification of $a^{\epsilon n} \equiv a^n$\newline}
+
+We may rewrite $a^{\epsilon n}$ as the following, since there must be a $c$ for $c \in \mathbb{R^+}$ which satisfy the equality.
+
+\begin{gather}
+    a^{\epsilon} \cdot a^n = c \cdot a^n = \Theta(a^n)
+\end{gather}
+
+Since it is known that $a^n = \Theta(a^n)$, these two expressions are considered equivalent.
 
 % \section{References}
 %
@@ -281,8 +321,6 @@ Please refer to proof at \textbf{d3} as it provides a broader proof base on $f(n
 % \raggedright
 % \bibliography{references.bib}
 % \bibliographystyle{plain}
-
-
 
 
 \end{document}
