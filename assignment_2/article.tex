@@ -258,7 +258,7 @@ Thus we may conclude if $f(n) = \Theta(n^k)$, then $f(2n) = \Theta(f(n))$.
     \ll  (\log n)^a \ll n^{\epsilon} \ll a^{\log_a(n)} \\
     \equiv \epsilon n \equiv \frac{n}{a} \\
     \ll n^a \equiv (n+b)^a \ll (n+a)^b \ll n^{a+b} \\
-    \ll a^{\epsilon n} \equiv a^n \ll b^n
+    \ll a^{\epsilon n} \ll a^n \ll b^n
 \end{gather}
 
 
@@ -346,12 +346,12 @@ These are all polynomial functions with the greatest power $> 1$; thus they are 
 
 $n^{a+b}$ is considered much greater than $a^{\epsilon n}$ due to its nature of being an exponential function.
 
-\paragraph{Justification of $a^{\epsilon n} \equiv a^n \ll b^n$\newline}
+\paragraph{Justification of $a^{\epsilon n} \ll a^n \ll b^n$\newline}
 
 
 \begin{gather}
-    \lim\limits_{n \to \infty} \frac{a^{\epsilon n}}{a^n} = \lim\limits_{n \to \infty} a^{\epsilon} = c \nonumber \\
-    \Rightarrow a^{\epsilon n} \equiv a^n
+    \lim\limits_{n \to \infty} \frac{a^{\epsilon n}}{a^n}  = 0 \nonumber \\
+    \Rightarrow a^{\epsilon n} \ll a^n
 \end{gather}
 
 Also it is apparent to see that $a^n \ll b^n$ due to $1 < a < b$. Thus, the inequality is justified.
