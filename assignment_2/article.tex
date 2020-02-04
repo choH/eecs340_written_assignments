@@ -246,7 +246,7 @@ Thus we may conclude if $f(n) = \Theta(n^k)$, then $f(2n) = \Theta(f(n))$.
 
 \section{Problem 2}
 
-\paragraph{Answer}
+\subsection{Conclusion}
 
 \begin{gather}
      n^{-a} \ll n^{-\epsilon} \ll \epsilon^n  \\
@@ -258,7 +258,32 @@ Thus we may conclude if $f(n) = \Theta(n^k)$, then $f(2n) = \Theta(f(n))$.
 \end{gather}
 
 
-\paragraph{Justification of $\log(n^\epsilon) \equiv \log(bn) \equiv \log(n^a) \equiv \log(n^b)$\newline}
+\subsection{Justifications}
+
+
+\paragraph{Justification of $n^{-a} \ll n^{-\epsilon} \ll \epsilon^n$\newline}
+
+\begin{gather}
+    \lim\limits_{n \to \infty} \frac{\epsilon^n}{n^{-\epsilon}} = \lim\limits_{n \to \infty} \frac{n\log \epsilon}{-\epsilon \log n} = \lim\limits_{n \to \infty} \frac{\log \epsilon}{-\epsilon} \cdot \frac{n}{\log n} \\
+    \text{Since } \epsilon \in (0, 1) \Rightarrow \log \epsilon < 0 \Rightarrow \frac{\log \epsilon}{\epsilon} > 0 \nonumber\\
+    \lim\limits_{n \to \infty} \frac{\epsilon^n}{n^{-\epsilon}} = \lim\limits_{n \to \infty} c \cdot \frac{n}{\log n} = \infty \\
+    \Rightarrow \epsilon^n \gg n^{-\epsilon}
+\end{gather}
+
+\begin{gather}
+    \text{Since } 0 < \epsilon < 1 < a \\
+    \lim\limits_{n \to \infty} \frac{n^{-a}}{n^{-\epsilon}} = \lim\limits_{n \to \infty} n^{\epsilon - a} = 0 \\
+    \Longrightarrow n^{-a} \ll n^{-\epsilon}
+\end{gather}
+
+Combine the above two set of equations together, we have $n^{-a} \ll n^{-\epsilon} \ll \epsilon^n$.
+
+\paragraph{Justification of $\epsilon^n \ll \log(n^\epsilon)$\newline}
+
+Since $\lim\limits_{n \to \infty} \epsilon^n = 0$, where $0 < 1 < \log(n^\epsilon)$, we may say the above inequality if true.
+
+
+\paragraph{Justification of $\log(n^\epsilon) \equiv \log(bn) \equiv \log(n^a) \equiv \log(n^b) \equiv \log_{\frac{1}{\epsilon}}(n)$\newline}
 
 The above equations can be rewrite as:
 
@@ -266,16 +291,34 @@ The above equations can be rewrite as:
     \log(n^\epsilon) = \epsilon \log(n) \\
     \log(n^a) = a \log(n) \\
     \log(bn) = \log(b) + \log(n) \\
-    \log(n^b) = b \log(n)
+    \log(n^b) = b \log(n) \\
 \end{gather}
 
 Where all of them can be generalized as $\Theta(\log(n))$, as it is known that $n^\epsilon \leq bn \leq n^a$ due to the decending of \textit{power(s)}.
 
-\paragraph{Justification of $ \log_{\frac{1}{\epsilon}}(n) \text{ \ (when $0 < \epsilon < \frac{1}{2}$)} \equiv \log(n^b) \leq \log_{\frac{1}{\epsilon}}(n) \text{ \ (when $\epsilon \geq \frac{1}{2}$)}$\newline}
+The relationship of the above expressions with $\log_{\frac{1}{\epsilon}}(n)$ can be a bit unintuitive, we may show they are considered equivalent with:
+\begin{gather}
+    \lim\limits_{n \to \infty} \frac{\log(n^\epsilon)}{\log_{\frac{1}{\epsilon}}(n)} = \lim\limits_{n \to \infty} \frac{\epsilon \log_{2}n}{\frac{\log_{2}n}{\log_{2}(\frac{1}{\epsilon})}} = \lim\limits_{n \to \infty} \epsilon \log_2(\frac{1}{\epsilon}) = c \nonumber\\
+    \Rightarrow \log(n^\epsilon) \equiv \log_{\frac{1}{\epsilon}}(n)
+\end{gather}
+
+\paragraph{Justification of $ \log(n)\ll  (\log (n))^a $\newline}
+\begin{gather}
+    \lim\limits_{n \to \infty} \frac{(\log (n))^a}{\log (n)} = \lim\limits_{n \to \infty} (\log(n))^{a-1} = \infty \nonumber \\
+    \Rightarrow  \log(n)\ll  (\log (n))^a
+\end{gather}
+
+Considered $ \log(n)$ is a generalized form of the perivous group of functions,  $(\log (n))^a$ is proven to be greater than the perivous group.
 
 
-It is known that when $\epsilon < \frac{1}{2} \Rightarrow \frac{1}{\epsilon} \geq 2$; when $\epsilon \geq \frac{1}{2} \Rightarrow  \frac{1}{\epsilon} \leq 2$. Since it is observable that $\log_{x}(n) \gg \log_{x'}(n)$ for $x < x'$, such (in)equaility is valid.
+\paragraph{Justification of $  (\log n)^a \ll n^{\epsilon} \ll a^{\log_a(n)}$\newline}
 
+\begin{gather}
+    \lim\limits_{n \to \infty} \frac{\log((\log(n)^a))}{\log(n^\epsilon)} = \lim\limits_{n \to \infty} \frac{a \cdot \log((\log(n)))}{\epsilon \log(n)} = 0 \nonumber \\
+    \Rightarrow (\log n)^a \ll n^{\epsilon}
+\end{gather}
+
+And it is apparent to see $n^{\epsilon} \ll  a^{\log_a(n)}$ since $ a^{\log_a(n)} = n$; as $\epsilon \in (0, 1)$, there will always be $n^{\epsilon} \ll n$.
 
 \paragraph{Justification of $a^{\log_a(n)} \equiv \epsilon n \equiv \frac{n}{a}$\newline}
 
@@ -283,20 +326,31 @@ The above equations can be rewrite as:
 \begin{gather}
     a^{\log_a(n)} = n^1 = \Theta(n) \\
     \epsilon n = \Theta(n) \\
-    frac{n}{a} = \frac{1}{a}n =  \Theta(n)
+    \frac{n}{a} = \frac{1}{a}n =  \Theta(n)
 \end{gather}
 
 Thus, the above equality is justified.
 
-\paragraph{Justification of $a^{\epsilon n} \equiv a^n$\newline}
 
-We may rewrite $a^{\epsilon n}$ as the following, since there must be a $c$ for $c \in \mathbb{R^+}$ which satisfy the equality.
+\paragraph{Justification of $n^a \equiv (n+b)^a \ll (n+a)^b \ll n^{a+b}$\newline}
+
+These are all polynomial functions with greatest power $> 1$, thus they are considered greater than the previous group (functions with greatest power $= 1$), and ordered according to ascending of \textit{power(s)}.
+
+
+
+\paragraph{Justification of $n^{a+b} \ll a^{\epsilon n} $\newline}
+
+$n^{a+b}$ is considered much greater than $a^{\epsilon n}$ due to its nature of being an exponential function.
+
+\paragraph{Justification of $a^{\epsilon n} \equiv a^n \ll b^n$\newline}
+
 
 \begin{gather}
-    a^{\epsilon} \cdot a^n = c \cdot a^n = \Theta(a^n)
+    \lim\limits_{n \to \infty} \frac{a^{\epsilon n}}{a^n} = \lim\limits_{n \to \infty} a^{\epsilon} = c \nonumber \\
+    \Rightarrow a^{\epsilon n} \equiv a^n
 \end{gather}
 
-Since it is known that $a^n = \Theta(a^n)$, these two expressions are considered equivalent.
+Also it is apparent to see that $a^n \ll b^n$ due to $1 < a < b$. Thus, the inequality is justified.
 
 % \section{References}
 %
