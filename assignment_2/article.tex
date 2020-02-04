@@ -41,7 +41,7 @@
 \title{\textbf{EECS 340: Assignment 2}}
 
 \author{Shaochen (Henry) ZHONG, \inlinecode{sxz517} \\ Zhitao (Robert) CHEN, \inlinecode{zxc325}}
-\date{Due and submitted on 02/03/2020 \\ EECS 340, Dr. Koyutürk}
+\date{Due and submitted on 02/03/2020 \\ EECS 340, Dr. Koyut{\"u}rk}
 \maketitle
 
 \section{Problem 1}
@@ -50,6 +50,8 @@
 % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % %
 % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % %
 \subsection{(a) $max\{f(n), g(n)\} = \Theta (f(n) + g(n))$}
+\textbf{True}
+
 
 Since it is known that $f(n) \geq 0$, $g(n) \geq 0$, and $c > 0$; we must have:
 
@@ -71,7 +73,7 @@ Since it is also known that $f(n) + g(n) \leq 2 \cdot \max(f(n),g(n))$, we may t
     \end{cases}
 \end{gather}
 
-Since both the $O$- and $\Omega$-notation are established, we may therefore conclude:
+Since both the $O$- and $\Omega$-notations are established, we may therefore conclude:
 
 \begin{gather}
     \max(f(n), g(n)) \in \Theta (f(n) + g(n))
@@ -81,11 +83,11 @@ Since both the $O$- and $\Omega$-notation are established, we may therefore conc
 % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % %
 % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % %
 % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % %
-\subsection{(b1) $f(n) + d = O(f(n))$.}
+\subsection{(b1) $f(n) + d = O(f(n))$}
 
 \textbf{False}
 
-For the seek of disambiguation, we rewrite the questioned equation as $f(n) + d = O(f(n))$ by $d$ replacing $c$ for $d > 0$.
+For the sake of disambiguation, we rewrite the questioned equation as $f(n) + d = O(f(n))$ by $d$ replacing $c$ for $d > 0$.
 
 To prove the statement to be valid, we need to show:
 
@@ -107,9 +109,10 @@ As the equation $0 + d \leq 0$ leads to a contradiction, the statement is invali
 % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % %
 % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % %
 % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % %
-\subsection{(b2) If $f(n) \geq 1$, then $f(n) + d = O(f(n))$.}
+\subsection{(b2) If $f(n) \geq 1$, then $f(n) + d = O(f(n))$}
+\textbf{True}
 
-For the seek of disambiguation, we rewrite the questioned equation as $f(n) + d = O(f(n))$ by $d$ replacing $c$ for $d > 0$.
+For the sake of disambiguation, we rewrite the questioned equation as $f(n) + d = O(f(n))$ by $d$ replacing $c$ for $d > 0$.
 
 
 According to the defination of $O$-notation, we have:
@@ -129,7 +132,7 @@ Thus, we may rewrite the above equation as:
     \Rightarrow 0 \leq f(n)+d \ \leq \ c'f(n) \ \ \ \text{for } \begin{cases}
                      c' = c + \frac{d}{f(n')} \\
                      n, n' \geq n_{0}
-                 \end{cases}
+                    \end{cases}
 \end{gather}
 
 Therefore, we may conclude if $f(n) \geq 1$, then $f(n) + d = O(f(n))$ via direct proof.
@@ -140,7 +143,7 @@ Therefore, we may conclude if $f(n) \geq 1$, then $f(n) + d = O(f(n))$ via direc
 % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % %
 % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % %
 % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % %
-\subsection{(c1) If $f(n) = O(g(n)), \log(f(n)) \geq 0$ and $\log(g(n)) \geq 0$, then $log(f(n)) = O(\log(g(n))$.}
+\subsection{(c1) If $f(n) = O(g(n)), \log(f(n)) \geq 0$ and $\log(g(n)) \geq 0$, then $log(f(n)) = O(\log(g(n))$}
 
 \textbf{False}
 
@@ -155,11 +158,11 @@ Thus the statement is invalid.
 % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % %
 % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % %
 % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % %
-\subsection{(c2) If $f(n) = O(g(n)), \log(f(n)) \geq 0$ and $\log(g(n)) \geq 1$, then $log(f(n)) = O(\log(g(n))$.}
+\subsection{(c2) If $f(n) = O(g(n)), \log(f(n)) \geq 0$ and $\log(g(n)) \geq 1$, then $log(f(n)) = O(\log(g(n))$}
+\textbf{True}
 
 
-
-According to the defination of $O$-notation, we must have:
+According to the definition of $O$-notation, we must have:
 
 \begin{gather}
     \exists c, n_{0} > 0 \ \text{ s.t. } \ f(n) \leq cg(n) \ \ \ \text{for $n \geq n_{0}$}
@@ -202,8 +205,9 @@ For $f(n) = 2^n$, we have $f(2n) = 4^n$. Where $f(2n) \neq \Theta(f(n))$ due to 
 % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % %
 \subsection{(d2) If $f(n) = O(n^k)$, then $f(2n) = O(n^k)$}
 
+\textbf{True}
 
-For the seek of disambiguation, we rewrite the questioned equation as: if $f(n) = O(n^k)$, then $f(2n) = O(n^k)$ by $k$ replacing $c$ for $k > 0$.
+For the sake of disambiguation, we rewrite the questioned equation as: if $f(n) = O(n^k)$, then $f(2n) = O(n^k)$ by $k$ replacing $c$ for $k > 0$.
 
 
 Since $f(n) = O(n^k)$, we must have $0 \leq f(n) \leq cn^k$ for $n \geq n_0$ and a $c$ for $c \in \mathbb{R^+}$. Now substitute $n$ as $2n$, we may have:
@@ -220,8 +224,8 @@ Thus we may conclude if $f(n) = O(n^k)$, then $f(2n) = O(n^k)$.
 % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % %
 % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % %
 \subsection{(d3) If $f(n) = \Theta(n^k)$, then $f(2n) = \Theta(f(n))$}
-
-For the seek of disambiguation, we rewrite the questioned equation as: if $f(n) = \Theta(n^k)$, then $f(2n) = \Theta(f(n))$.
+\textbf{True}
+For the sake of disambiguation, we rewrite the questioned equation as: if $f(n) = \Theta(n^k)$, then $f(2n) = \Theta(f(n))$.
 
 Since $f(n) = \Theta(n^k)$, we must have $0 \leq c_1 \cdot n^k \leq f(n) \leq c_2 \cdot n^k$ for $n \geq n_0$ and $c_1, c_2$ for $c_1, c_2 \in \mathbb{R^+}$. Now substitute $n$ as $2n$, we may have:
 
@@ -285,7 +289,7 @@ Since $\lim\limits_{n \to \infty} \epsilon^n = 0$, where $0 < 1 < \log(n^\epsilo
 
 \paragraph{Justification of $\log(n^\epsilon) \equiv \log(bn) \equiv \log(n^a) \equiv \log(n^b) \equiv \log_{\frac{1}{\epsilon}}(n)$\newline}
 
-The above equations can be rewrite as:
+The above equations can be losely rewritten as:
 
 \begin{gather}
     \log(n^\epsilon) = \epsilon \log(n) \\
@@ -294,9 +298,9 @@ The above equations can be rewrite as:
     \log(n^b) = b \log(n) \\
 \end{gather}
 
-Where all of them can be generalized as $\Theta(\log(n))$, as it is known that $n^\epsilon \leq bn \leq n^a$ due to the decending of \textit{power(s)}.
+Where all of them can be generalized as $\Theta(\log(n))$, as it is known that $n^\epsilon \leq bn \leq n^a$ due to the decending of \textit{power(s)}.\newline
 
-The relationship of the above expressions with $\log_{\frac{1}{\epsilon}}(n)$ can be a bit unintuitive, we may show they are considered equivalent with:
+Note the relationship of the above expressions with $\log_{\frac{1}{\epsilon}}(n)$ can be a bit unintuitive, we may show they are considered equivalent with:
 \begin{gather}
     \lim\limits_{n \to \infty} \frac{\log(n^\epsilon)}{\log_{\frac{1}{\epsilon}}(n)} = \lim\limits_{n \to \infty} \frac{\epsilon \log_{2}n}{\frac{\log_{2}n}{\log_{2}(\frac{1}{\epsilon})}} = \lim\limits_{n \to \infty} \epsilon \log_2(\frac{1}{\epsilon}) = c \nonumber\\
     \Rightarrow \log(n^\epsilon) \equiv \log_{\frac{1}{\epsilon}}(n)
@@ -308,7 +312,7 @@ The relationship of the above expressions with $\log_{\frac{1}{\epsilon}}(n)$ ca
     \Rightarrow  \log(n)\ll  (\log (n))^a
 \end{gather}
 
-Considered $ \log(n)$ is a generalized form of the perivous group of functions,  $(\log (n))^a$ is proven to be greater than the perivous group.
+Considered $ \log(n)$ is a generalized form of the previous group of functions,  $(\log (n))^a$ is proven to be greater than the previous group.
 
 
 \paragraph{Justification of $  (\log n)^a \ll n^{\epsilon} \ll a^{\log_a(n)}$\newline}
@@ -322,7 +326,7 @@ And it is apparent to see $n^{\epsilon} \ll  a^{\log_a(n)}$ since $ a^{\log_a(n)
 
 \paragraph{Justification of $a^{\log_a(n)} \equiv \epsilon n \equiv \frac{n}{a}$\newline}
 
-The above equations can be rewrite as:
+The above equations can be losely rewritten as:
 \begin{gather}
     a^{\log_a(n)} = n^1 = \Theta(n) \\
     \epsilon n = \Theta(n) \\
@@ -334,7 +338,7 @@ Thus, the above equality is justified.
 
 \paragraph{Justification of $n^a \equiv (n+b)^a \ll (n+a)^b \ll n^{a+b}$\newline}
 
-These are all polynomial functions with greatest power $> 1$, thus they are considered greater than the previous group (functions with greatest power $= 1$), and ordered according to ascending of \textit{power(s)}.
+These are all polynomial functions with the greatest power $> 1$; thus they are considered greater than the previous group (functions with the greatest power $= 1$), and ordered according to ascending of \textit{power(s)}.
 
 
 
