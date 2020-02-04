@@ -125,11 +125,11 @@ Thus, we may rewrite the above equation as:
 
 
 \begin{gather}
- 0 \leq f(n)+d \leq (c + \frac{d}{f(n)})f(n) \ \ \ \text{for $f(n) \geq 1$} \nonmumber\\
- \Rightarrow 0 \leq f(n)+d \ \leq \ c'f(n) \ \ \ \text{for } \begin{cases}
-                 c' = c + \frac{d}{f(n')} \\
-                 n, n' \geq n_{0}
-             \end{cases}
+    0 \leq f(n)+d \leq (c + \frac{d}{f(n)})f(n) \ \ \ \text{for $f(n) \geq 1$} \nonmumber\\
+    \Rightarrow 0 \leq f(n)+d \ \leq \ c'f(n) \ \ \ \text{for } \begin{cases}
+                     c' = c + \frac{d}{f(n')} \\
+                     n, n' \geq n_{0}
+                 \end{cases}
 \end{gather}
 
 Therefore, we may conclude if $f(n) \geq 1$, then $f(n) + d = O(f(n))$ via direct proof.
@@ -249,10 +249,12 @@ Thus we may conclude if $f(n) = \Theta(n^k)$, then $f(2n) = \Theta(f(n))$.
 \paragraph{Answer}
 
 \begin{gather}
-    \frac{1}{n^a} \ll \frac{1}{n^\epsilon} \ll \log_{\frac{1}{\epsilon}}(n) \text{ \ (when $0 < \epsilon < \frac{1}{2}$)} \ll \log(n^\epsilon) \equiv \log(bn) \equiv \log(n^a) \\
-    \equiv \log(n^b) \leq \log_{\frac{1}{\epsilon}}(n) \text{ \ (when $\epsilon \geq \frac{1}{2}$)} \ll (\log n)^a \ll n^{\epsilon} \\
-    \ll a^{\log_a(n)} \equiv \epsilon n \equiv \frac{n}{a} \ll n^a \equiv (n+b)^a\\
-    \ll (n+a)^b \ll n^{a+b} \ll \epsilon^n \ll a^{\epsilon n} \equiv a^n \ll b^n
+     n^{-a} \ll n^{-\epsilon} \ll \epsilon^n  \\
+    \ll \log(n^\epsilon) \equiv \log(bn) \equiv \log(n^a) \equiv \log(n^b) \equiv \log_{\frac{1}{\epsilon}}(n)\\
+    \ll  (\log n)^a \ll n^{\epsilon} \ll a^{\log_a(n)} \\
+    \equiv \epsilon n \equiv \frac{n}{a} \\
+    \ll n^a \equiv (n+b)^a \ll (n+a)^b \ll n^{a+b} \\
+    \ll a^{\epsilon n} \equiv a^n \ll b^n
 \end{gather}
 
 
