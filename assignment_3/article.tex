@@ -143,46 +143,43 @@ As now we have $T(m+1) \leq c(m+1)$ for $c \in \mathbb{Z^+}$, we may say it is t
 \section{Problem 3}
 
 
+
+
 % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % %
 % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % %
 % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % %
 \section{Problem 4}
 
 \begin{algorithm}
-\caption{QuickMiss(C, D, start, end)}\label{QuickMiss}
+\caption{QuickMiss(C, D, p, r)}\label{QuickMiss}
     \begin{algorithmic}[1]
-        \Procedure{QuickMiss}{C, D, start, end}
-        % \State $l \gets m$
-        % \State $p \gets n$
+        \Procedure{QuickMiss}{C, D, p, r}
         \If {$p < r$}
-            \State $left, q, right \gets \textsc{Partition}(C, D, start, end)$
-            \If {$left < right$}
-                \State $\textsc{Partition}(C, q+1, r)$
-            \ElsIf {$right > left$}
-                \State $\textsc{Partition}(C, p, q-1)$
+            \State $q \gets \textsc{Partition}(C, p, r)$
+            \If {$C[q] == D[q]$}
+                \State $\textsc{QuickMiss}(C, D, q+1, r)$
             \Else
-                \State \Return $D[q]$
+                \State $\textsc{QuickMiss}(C, D, p, q-1)$
             \EndIf
         \EndIf
+            \State \Return $D[q]$
         \EndProcedure
     \end{algorithmic}
 \end{algorithm}
 
 
 \begin{algorithm}
-\caption{Partition(C, D, p, r)}\label{Partition}
+\caption{Partition(A, p, r)}\label{Partition}
     \begin{algorithmic}[1]
-        \Procedure{Partition}{C, D, p, r}
-        \State $r \gets r+1$
-        \State $C[r] \gets D[\frac{p+r}{2}]$
-        \State $q \gets p$
-        \For {$i \gets p$ \textbf{to} $r-1$}
-            \If {$\textsc{Compare-Strings}(C[i], C[r])$}
-                \State $\textsc{Swap}(C[i], C[q])$
+        \Procedure{Partition}{A, p, r}
+        \State $q \gets p-1$
+        \For {$i \gets p$ \textbf{to} $r$}
+            \If {$\textsc{Compare-Strings}(A[i], A[r])$}
                 \State $q \gets q+1$
+                \State $\textsc{Swap}(A[i], A[q])$
             \EndIf
         \EndFor
-        \State $\textsc{Swap}(C[q], C[r])$
+        \State $\textsc{Swap}(A[q], A[r])$ \Comment{Exchange the two elements.}
         \State \Return $q$
         \EndProcedure
     \end{algorithmic}
