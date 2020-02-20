@@ -64,7 +64,7 @@ For this recurrance, we have a comparsion between $n^{\log_a a^2}$ and $n^2$, th
 We may rewrite it as $T(n) = T\Big(\frac{n}{\frac{1}{\lambda}}\Big) + n^{\lambda}$. Thus, we have a comparsion between $n^{\log_{\frac{1}{\lambda}} 1}$ and $n^{\lambda}$, which is equivalent as $n^0$ and $n^{\lambda}$, then we have $f(n) = \Omega(n^{\log_b a + \epsilon})$ for $\epsilon = \lambda$. We may also show $af(\frac{n}{b}) \leq cf(n)$ for $1 \cdot f\Big(\frac{n}{\frac{1}{\lambda}}\Big) = f(\lambda n)$. Combined, together, we can apply \textit{case 3} of the master theorem and conclude that the solution is $T(n) = \Theta(n^\lambda)$.
 
 \section{(d) $T(n) = aT(\frac{n}{a}) + \Theta(n^{\lambda}(\log n)^b)$}
-For this recurrance, we have a comparsion between $n^{\log_a a}$ and $n^{\lambda}(\log n)^b)$, which is equivalent to comparing $n$ and $n^{\lambda}(\log n)^b)$. We may prove that $n$ is polynomially larger than $n^{\lambda}(\log n)^b)$ by analyzing:
+For this recurrance, we have a comparsion between $n^{\log_a a}$ and $n^{\lambda}(\log n)^b$, which is equivalent to comparing $n$ and $n^{\lambda}(\log n)^b$. We may prove that $n$ is polynomially larger than $n^{\lambda}(\log n)^b$ by analyzing:
 
 \begin{align}
     \text{W.T.S. \ }\lim_{n \to \infty} \frac{n^\epsilon \cdot n^\lambda (\log n)^b}{n} &= 0\\
