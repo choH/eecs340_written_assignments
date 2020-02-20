@@ -84,6 +84,59 @@ Thus, we have $f(n) = O(n^{\log_b a - \epsilon})$ for $\epsilon < 1 - \lambda$. 
 \section{Problem 2}
 
 
+\subsection{(a) For any constant $0 < \alpha < 1$, if $T(n) = T(\alpha n) + T((1-\alpha)n) + \Theta(n)$, then $T(n) = O(n \log n)$}
+
+
+\paragraph{Guess $T(n) = O(n \log n)$\newline}
+Thus there must be constants $c, c'$ for $c, c'\in \mathbb{Z^+}$ s.t. $T(n) \leq cn \log n - c'n$.
+
+\paragraph{Given $T(n) = T(\alpha n) + T((1-\alpha)n) + \Theta(n)$\newline}
+\begin{proof}
+We may rewrite it as $T(n) = T(\alpha n) + T((1-\alpha)n) + dn$ for $d \in \mathbb{Z^+}$. Assume the claim $T(k) = ck \log k - c'k$ holds true for $T(k)$ for $k \in [1, n)$, and without loss of generality assume that $\alpha \geq 0.5$, we have:
+
+\begin{align}
+    T(k + 1) &= T(\alpha(k + 1)) + T((1-\alpha)(k+1)) + d(k + 1) \\
+    &\leq [c \cdot \alpha (k + 1) \log(\alpha(k + 1)) - c'(k+1)] + \nonumber\\
+    & \ \ \ \ [c \cdot ((1- \alpha)(k + 1))\log((1-\alpha)(k + 1)) - c'(k+1)]+ d(k + 1) \nonumber \\
+    &\leq c \cdot \alpha (k + 1) \log(\alpha(k + 1)) + c(1-\alpha)(k + 1)\log(\alpha(k+1)) + d(k + 1) - 2c'(k+1) \nonumber \\
+    &\leq (c \alpha + c(k + 1) -  c \alpha) \cdot \log(\alpha(k + 1)) +  d(k + 1) - 2c'(k+1)\nonumber \\
+    &\leq c(k + 1) \cdot \log(\alpha(k + 1)) +  (d-2c')(k + 1)\nonumber \\
+    &\leq c(k + 1) \cdot \log(k + 1)+  (d-2c')(k + 1)\nonumber \\
+    \Longrightarrow T(k + 1) &\leq c(k + 1) \cdot \log(k + 1) \ \ \ \text{for $c'= \frac{1}{2}d$}
+\end{align}
+
+As now we have $T(k + 1) \leq c(k + 1) \cdot \log(k + 1)$ for $c'= \frac{1}{2}d$, we may say it is true for $T(k)$ for all $k \in [1, n)$.
+\end{proof}
+
+
+\subsubsection{(b) For any constant $k > 0$, if $T(n) = \Theta(n) + \sum^{k}_{i = 1} T(\frac{n}{2^i})$, then $T(n) = O(n)$}
+
+\paragraph{Guess $T(n) = O(n \log n)$\newline}
+Thus, there must be a constant $c$ for $c \in \mathbb{Z^+}$ s.t. $T(n) \leq cn$.
+
+\paragraph{Given $T(n) = \Theta(n) + \sum^{k}_{i = 1} T(\frac{n}{2^i})$\newline}
+\begin{proof}
+As there must be a constant $d$ for $d \in \mathbb{Z^+}$ s.t. $\Theta(n) \leq dn$ -- and therefore causes $T(n) \leq dn + \sum^{k}_{i = 1} T(\frac{n}{2^i})$ -- with $d$ for $0 < d \leq c - \sum^{k}_{i = 1} c(\frac{1}{2^i})$. Now we may connect the two equations and get
+
+\begin{align}
+    T(n) &\leq dn + \sum^{k}_{i = 1} T(\frac{n}{2^i}) \leq cn \\
+    &\leq dn + \sum^{k}_{i = 1} c \cdot (\frac{n}{2^i}) \leq cn \nonumber
+\end{align}
+
+Assume the claim $T(n) \leq dn + \sum^{k}_{i = 1} T(\frac{n}{2^i}) \leq cn$ holds true for $T(m)$ for $m \in [1, n)$, consider:
+
+\begin{align}
+    T(m+1) &\leq d(m + 1) + \sum^{k}_{i = 1} T(\frac{m+1}{2^i}) \\
+    &\leq d(m + 1) + \sum^{k}_{i = 1} c \cdot (\frac{m+1}{2^i}) \nonumber \\
+    &\leq \underbrace{dm + \sum^{k}_{i = 1} c \cdot (\frac{m}{2^i})}_{= T(m) \leq cm} + \underbrace{d + \sum^{k}_{i = 1} c \cdot (\frac{1}{2^i})}_{= T(1) \leq c(1)} \\
+    \Longrightarrow T(m+1) &\leq c(m+1)
+\end{align}
+
+
+As now we have $T(m+1) \leq c(m+1)$ for $c \in \mathbb{Z^+}$, we may say it is true for $T(m)$ for all $m \in [1, n)$.
+\end{proof}
+
+
 % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % %
 % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % %
 % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % %
