@@ -20,7 +20,7 @@
 \usepackage{enumitem}
 \usepackage{subfig}
 \usepackage{wasysym}
-\newcommand{\inlinecode}{\texttt}
+\newcommand{\ilc}{\texttt}
 \usepackage{etoolbox}
 \usepackage{algorithm}
 % \usepackage{algorithmic}
@@ -40,7 +40,7 @@
 
 \title{\textbf{EECS 340: Assignment 3}}
 
-\author{Shaochen (Henry) ZHONG, \inlinecode{sxz517} \\ Yuhui ZHANG, \inlinecode{yxz2052}}
+\author{Shaochen (Henry) ZHONG, \ilc{sxz517} \\ Yuhui ZHANG, \ilc{yxz2052}}
 \date{Due and submitted on 02/20/2020 \\ EECS 340, Dr. Koyut{\"u}rk}
 \maketitle
 
@@ -151,6 +151,8 @@ As now we have $T(m+1) \leq c(m+1)$ for $c \in \mathbb{Z^+}$, we may say it is t
 \newpage
 \section{Problem 4}
 
+\subsubsection{(a)}
+
 \begin{algorithm}
 \caption{QuickMiss(C, D, p, r, missLeft)}\label{QuickMiss}
     \begin{algorithmic}[1]
@@ -189,6 +191,11 @@ As now we have $T(m+1) \leq c(m+1)$ for $c \in \mathbb{Z^+}$, we may say it is t
         \EndProcedure
     \end{algorithmic}
 \end{algorithm}
+
+\subsubsection{(b)}
+
+It is known that \textsc{QuickSort} has an average runtime of $O(n\log n)$ due to the fact that it is considered \textit{case 2} of the master theorem: as it has $n$ nodes on each level and with a depth of $\log n$, thus $O(n\log n)$. Our \textsc{QuickMiss} algorithm has a runtime of $O(n)$ due to it only calls \textsc{Partition} on either left portion or right portion to the \ilc{pivot}, but never both. Thus, on each level it will always has less than $n$ nodes, therefore forming a \textit{case 3} of the master theorem. The master theorem suggest, in \textit{case 3} the roots dominate the leaves and therefore determine the runtime of the algorithm -- as \textsc{QuickSort} has $n$ roots at the beginning, we may conclude it has a runtime of $\Theta(n)$.
+
 
 % \section{References}
 %
