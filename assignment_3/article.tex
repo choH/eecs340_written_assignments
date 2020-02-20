@@ -53,7 +53,7 @@
 
 For this recurrance, we have a comparsion between $n^{\log_a b}$ and $n$. Since it is given that $1 < a < b$, there must be $\log_a b > 1$. Therefore we may say that there must be a $n^\epsilon = \frac{n^{\log_a b}}{n}$ where $0 < \epsilon = \log_a b - 1$.
 
-Now we have $f(n) = n = O(n^{(\log_a b) - \epsilon})$, where $0 < \epsilon = \log_a b - 1$, we can apply \textit{case 1} of the master theorem and conclude that the solution is $T(n) = \Theta(n)$.
+Now we have $f(n) = n = O(n^{(\log_a b) - \epsilon})$, where $0 < \epsilon = \log_a b - 1$, we can apply \textit{case 1} of the master theorem and conclude that the solution is $T(n) = \Theta(n^{\log_a b})$.
 
 \section{(b) $T(n) = a^2 T(n/a) + \Theta(n^2)$}
 For this recurrance, we have a comparsion between $n^{\log_a a^2}$ and $n^2$, thus $n^2$ and $n^2$. As now we have $f(n) = \Theta(n^2)$, we can apply \textit{case 2} of the master theorem and conclude that the solution is $T(n) = \Theta(n \cdot \log n)$
