@@ -1,4 +1,4 @@
-\documentclass[12pt]{article}
+\documentclass[11pt]{article}
 \usepackage{setspace}
 \setstretch{1}
 \usepackage{amsmath,amssymb, amsthm}
@@ -49,6 +49,34 @@
 % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % %
 \section{Problem 1}
 
+\section{(a) $T(n) = bT(n/a) + \Theta(n)$}
+
+For this recurrance, we have a comparsion between $n^{\log_a b}$ and $n$. Since it is given that $1 < a < b$, there must be $\log_a b > 1$. Therefore we may say that there must be a $n^\epsilon = \frac{n^{\log_a b}}{n}$ where $0 < \epsilon = \log_a b - 1$.
+
+Now we have $f(n) = n = O(n^{(\log_a b) - \epsilon})$, where $0 < \epsilon = \log_a b - 1$, we can apply \textit{case 1} of the master theorem and conclude that the solution is $T(n) = \Theta(n)$.
+
+\section{(b) $T(n) = a^2 T(n/a) + \Theta(n^2)$}
+For this recurrance, we have a comparsion between $n^{\log_a a^2}$ and $n^2$, thus $n^2$ and $n^2$. As now we have $f(n) = \Theta(n^2)$, we can apply \textit{case 2} of the master theorem and conclude that the solution is $T(n) = \Theta(n \cdot \log n)$
+
+
+\section{(c) $T(n) = T(\lambda n) + n^{\lambda}$}
+
+We may rewrite it as $T(n) = T\Big(\frac{n}{\frac{1}{\lambda}}\Big) + n^{\lambda}$. Thus, we have a comparsion between $n^{\log_{\frac{1}{\lambda}} 1}$ and $n^{\lambda}$, which is equivalent as $n^0$ and $n^{\lambda}$, then we have $f(n) = \Omega(n^{\log_b a + \epsilon})$ for $\epsilon = \lambda$. We may also show $af(\frac{n}{b}) \leq cf(n)$ for $1 \cdot f\Big(\frac{n}{\frac{1}{\lambda}}\Big) = f(\lambda n)$. Combined, together, we can apply \textit{case 3} of the master theorem and conclude that the solution is $T(n) = \Theta(n^\lambda)$.
+
+\section{(d) $T(n) = aT(\frac{n}{a}) + \Theta(n^{\lambda}(\log n)^b)$}
+For this recurrance, we have a comparsion between $n^{\log_a a}$ and $n^{\lambda}(\log n)^b)$, which is equivalent to comparing $n$ and $n^{\lambda}(\log n)^b)$. We may prove that $n$ is polynomially larger than $n^{\lambda}(\log n)^b)$ by analyzing:
+
+\begin{align}
+    \text{W.T.S. \ }\lim_{n \to \infty} \frac{n^\epsilon \cdot n^\lambda (\log n)^b}{n} &= 0\\
+    \lim_{n \to \infty} \frac{n^\lambda (\log n)^b}{n^{1-\epsilon - \lambda}} &= 0 \nonumber\\
+    % \text{Since $n^x$ for any $x > 0$ grows much faster than anything with a base of $\log n$, we must have the following} \nonumber \\
+    \Longrightarrow 1-\epsilon - \lambda > 0 &\Rightarrow \epsilon < 1 - \lambda
+\end{align}
+
+Thus, we have $f(n) = O(n^{\log_b a - \epsilon})$ for $\epsilon < 1 - \lambda$. Then, we can apply \textit{case 1} of the master theorem and conclude that the solution is $T(n) = \Theta(n)$.
+
+
+
 
 % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % %
 % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % %
@@ -66,6 +94,46 @@
 % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % %
 % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % %
 \section{Problem 4}
+
+\begin{algorithm}
+\caption{QuickMiss(C, D, start, end)}\label{QuickMiss}
+    \begin{algorithmic}[1]
+        \Procedure{QuickMiss}{C, D, start, end}
+        % \State $l \gets m$
+        % \State $p \gets n$
+        \If {$p < r$}
+            \State $left, q, right \gets \textsc{Partition}(C, D, start, end)$
+            \If {$left < right$}
+                \State $\textsc{Partition}(C, q+1, r)$
+            \ElsIf {$right > left$}
+                \State $\textsc{Partition}(C, p, q-1)$
+            \Else
+                \State \Return $D[q]$
+            \EndIf
+        \EndIf
+        \EndProcedure
+    \end{algorithmic}
+\end{algorithm}
+
+
+\begin{algorithm}
+\caption{Partition(C, D, p, r)}\label{Partition}
+    \begin{algorithmic}[1]
+        \Procedure{Partition}{C, D, p, r}
+        \State $r \gets r+1$
+        \State $C[r] \gets D[\frac{p+r}{2}]$
+        \State $q \gets p$
+        \For {$i \gets p$ \textbf{to} $r-1$}
+            \If {$\textsc{Compare-Strings}(C[i], C[r])$}
+                \State $\textsc{Swap}(C[i], C[q])$
+                \State $q \gets q+1$
+            \EndIf
+        \EndFor
+        \State $\textsc{Swap}(C[q], C[r])$
+        \State \Return $q$
+        \EndProcedure
+    \end{algorithmic}
+\end{algorithm}
 
 % \section{References}
 %
