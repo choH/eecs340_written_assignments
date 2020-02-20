@@ -158,9 +158,9 @@ As now we have $T(m+1) \leq c(m+1)$ for $c \in \mathbb{Z^+}$, we may say it is t
         \If {$p < r$}
             \State $q \gets \textsc{Partition}(C, p, r)$
             \If {$C[q] == D[q]$}
-                \State $\textsc{QuickMiss}(C, D, q+1, r, False)$
+                \State \Return $\textsc{QuickMiss}(C, D, q+1, r, False)$
             \Else
-                \State $\textsc{QuickMiss}(C, D, p, q-1, True)$
+                \State \Return $\textsc{QuickMiss}(C, D, p, q-1, True)$
             \EndIf
         \EndIf
         \If {$missLeft == True$}
