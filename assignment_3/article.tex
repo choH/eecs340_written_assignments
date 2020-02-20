@@ -148,21 +148,26 @@ As now we have $T(m+1) \leq c(m+1)$ for $c \in \mathbb{Z^+}$, we may say it is t
 % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % %
 % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % %
 % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % %
+\newpage
 \section{Problem 4}
 
 \begin{algorithm}
-\caption{QuickMiss(C, D, p, r)}\label{QuickMiss}
+\caption{QuickMiss(C, D, p, r, missLeft)}\label{QuickMiss}
     \begin{algorithmic}[1]
-        \Procedure{QuickMiss}{C, D, p, r}
+        \Procedure{QuickMiss}{C, D, p, r, missLeft}
         \If {$p < r$}
             \State $q \gets \textsc{Partition}(C, p, r)$
             \If {$C[q] == D[q]$}
-                \State $\textsc{QuickMiss}(C, D, q+1, r)$
+                \State $\textsc{QuickMiss}(C, D, q+1, r, False)$
             \Else
-                \State $\textsc{QuickMiss}(C, D, p, q-1)$
+                \State $\textsc{QuickMiss}(C, D, p, q-1, True)$
             \EndIf
         \EndIf
-            \State \Return $D[q]$
+        \If {$missLeft == True$}
+            \State \Return $D[p]$
+        \Else
+            \State \Return $D[r+1]$
+        \EndIf
         \EndProcedure
     \end{algorithmic}
 \end{algorithm}
@@ -172,14 +177,14 @@ As now we have $T(m+1) \leq c(m+1)$ for $c \in \mathbb{Z^+}$, we may say it is t
 \caption{Partition(A, p, r)}\label{Partition}
     \begin{algorithmic}[1]
         \Procedure{Partition}{A, p, r}
-        \State $q \gets p-1$
+        \State $q \gets p$
         \For {$i \gets p$ \textbf{to} $r$}
             \If {$\textsc{Compare-Strings}(A[i], A[r])$}
+                \State $\textsc{Swap}(A[i], A[q])$ \Comment{Exchange the two elements.}
                 \State $q \gets q+1$
-                \State $\textsc{Swap}(A[i], A[q])$
             \EndIf
         \EndFor
-        \State $\textsc{Swap}(A[q], A[r])$ \Comment{Exchange the two elements.}
+        \State $\textsc{Swap}(A[q], A[r])$
         \State \Return $q$
         \EndProcedure
     \end{algorithmic}
