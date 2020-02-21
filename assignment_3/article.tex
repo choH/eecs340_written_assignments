@@ -94,7 +94,7 @@ Thus there must be constants $c, c'$ for $c, c'\in \mathbb{Z^+}$ s.t. $T(n) \leq
 
 \paragraph{Given $T(n) = T(\alpha n) + T((1-\alpha)n) + \Theta(n)$\newline}
 \begin{proof}
-We may rewrite it as $T(n) = T(\alpha n) + T((1-\alpha)n) + dn$ for $d \in \mathbb{Z^+}$. Assume the claim $T(k) = ck \log k - c'k$ holds true for $T(k)$ for $k \in [1, n)$, and without loss of generality assume that $\alpha \geq 0.5$, we have:
+We may rewrite it as $T(n) = T(\alpha n) + T((1-\alpha)n) + dn$ for $d \in \mathbb{Z^+}$. Assume the claim $T(k) \leq ck \log k - c'k$ holds true for $T(k)$ for $k \in [1, n)$, and without loss of generality assume that $\alpha \geq 0.5$, we have:
 
 \begin{align}
     T(k + 1) &= T(\alpha(k + 1)) + T((1-\alpha)(k+1)) + d(k + 1) \\
