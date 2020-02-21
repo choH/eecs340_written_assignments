@@ -144,6 +144,257 @@ As now we have $T(m+1) \leq c(m+1)$ for $c \in \mathbb{Z^+}$, we may say it is t
 
 
 
+% \begin{tikzpicture}
+%
+% \matrix [matrix of nodes,
+%          nodes = {draw,  minimum size = 2ex},
+%          column sep=1ex, row sep=1ex,
+%          row 1/.style={execute at begin cell= {|[label=\pgfmathparse{int(\the\pgfmatrixcurrentcolumn-1)}\pgfmathresult]|}}
+%          ]
+% {
+% 9 & 2 & 4 & 4 & 5   \\
+% 8 & 3 & 3 & 5 & 5   \\
+% 7 & 4 & 2 & 7 & 5   \\
+% 6 & 5 & 1 & 1 & 5   \\
+% 5 & 6 & 0 & 2 & 5   \\
+% };
+% \end{tikzpicture}
+
+
+
+
+\tikzset{
+mymat/.style={
+  matrix of math nodes,
+  text height=2.5ex,
+  text depth=0.75ex,
+  text width=3.25ex,
+  align=center,
+  column sep=-\pgflinewidth
+  },
+mymats/.style={
+  mymat,
+  nodes={draw,fill=#1}
+  }
+}
+
+
+\begin{tikzpicture}[>=latex]
+
+\matrix[mymat,anchor=west,row 2/.style={nodes=draw}]
+at (0,4.5)
+(mat1)
+{
+1 & 2 & 3 & 4 & 5\\
+> & > & > & > & ..\\
+};
+
+
+\matrix[mymat,anchor=west,row 1/.style={nodes=draw}]
+at (0,3)
+(mat2)
+{
+> & > & > & > & ..\\
+};
+
+
+\matrix[mymat,anchor=west,row 1/.style={nodes=draw}]
+at (0,2)
+(mat3)
+{
+> & > & > & > & ..\\
+};
+
+
+\matrix[mymat,anchor=west,row 1/.style={nodes=draw}]
+at (0,1)
+(mat4)
+{
+> & > & > & > & ..\\
+};
+
+\matrix[mymat,anchor=west,row 1/.style={nodes=draw}]
+at (0,0)
+(mat5)
+{
+> & > & > & > & ..\\
+};
+
+
+
+
+
+
+
+\matrix[mymat,right=of mat1,row 2/.style={nodes=draw}]
+at (4.5,4.5)
+(mat11)
+{
+1 & 2 & 3 & 4 & 5\\
+> & > & > & > & ..\\
+};
+
+
+\matrix[mymat,right=of mat2,row 1/.style={nodes=draw}]
+at (4.5,3)
+(mat22)
+{
+> & > & > & > & ..\\
+};
+
+
+\matrix[mymat,right=of mat3,row 1/.style={nodes=draw}]
+at (4.5,2)
+(mat33)
+{
+> & > & > & > & ..\\
+};
+
+
+\matrix[mymat,right=of mat4,row 1/.style={nodes=draw}]
+at (4.5,1)
+(mat44)
+{
+> & > & > & > & ..\\
+};
+
+\matrix[mymat,right=of mat5,row 1/.style={nodes=draw}]
+at (4.5,0)
+(mat55)
+{
+> & > & > & > & ..\\
+};
+
+
+
+
+
+\matrix[mymat,right=of mat11,row 2/.style={nodes=draw}]
+at (10,4.5)
+(mat111)
+{
+1 & 2 & 3 & 4 & 5\\
+M & X & X & > & ..\\
+};
+
+
+\matrix[mymat,right=of mat22,row 1/.style={nodes=draw}]
+at (10,3)
+(mat222)
+{
+X & X & > & > & ..\\
+};
+
+
+\matrix[mymat,right=of mat33,row 1/.style={nodes=draw}]
+at (10,2)
+(mat333)
+{
+X & > & > & > & ..\\
+};
+
+%
+% \matrix[mymat,right=of mat44,row 1/.style={nodes=draw}]
+% at (10,1)
+% (mat444)
+% {
+% \geq & \geq & \geq & \geq & ..\\
+% };
+%
+% \matrix[mymat,right=of mat55,row 1/.style={nodes=draw}]
+% at (10,0)
+% (mat555)
+% {
+% \geq & \geq & \geq & \geq & ..\\
+% };
+
+
+\node[above=20pt of mat1]
+    (cella) {\textbf{Step 1:} $T(5)$};
+\node[above=0pt of mat1]
+    (cella) {$L[1] > L[2] > ... > L[5]$};
+
+
+\node[above=20pt of mat11]
+    (cella) {\textbf{Step 2:} $T(1)$};
+\node[above=0pt of mat11]
+    (cella) {$A[1] > B[1] > ... > E[1]$};
+
+\node[above=20pt of mat111]
+    (cella) {\textbf{Step 3:} $T(1)$};
+\node[above=0pt of mat111]
+    (cella) {Sort $A[2], A[3], B[1], B[2], C[1]$};
+
+\node[left=0pt of mat1]
+  (cella) {B};
+\node[left=0pt of mat2]
+  (cellb) {A};
+\node[left=0pt of mat3]
+  (cellb) {D};
+\node[left=0pt of mat4]
+  (cellb) {C};
+\node[left=0pt of mat5]
+  (cellb) {E};
+
+\node[left=0pt of mat11]
+(cella) {A};
+\node[left=0pt of mat22]
+(cellb) {B};
+\node[left=0pt of mat33]
+(cellb) {C};
+\node[left=0pt of mat44]
+(cellb) {D};
+\node[left=0pt of mat55]
+(cellb) {E};
+
+
+\node[left=0pt of mat111]
+(cella) {A};
+\node[left=0pt of mat222]
+(cellb) {B};
+\node[left=0pt of mat333]
+(cellb) {C};
+% \node[left=0pt of mat444]
+% (cellb) {D};
+% \node[left=0pt of mat555]
+% (cellb) {E};
+\end{tikzpicture}\newline
+
+
+\paragraph{Step 1: Divide\newline}
+Divide the 25 elements into groups of 5, and sort each group internally. By that we may have five sorted lists, we denote them as $A, B, C, D, E$, with the relationship of
+
+\begin{equation}
+    L[1] > L[2] > L[3] > L[4] > L[5] \label{eq:divide_group}
+\end{equation}
+
+for $L \in \{A, B, C, D, E\}$. This step shall cost five experiments and thus carries a $T(5)$ runtime, assuming each experiment will take $T(1)$ to conduct.
+
+\paragraph{Step 2: Sort front and find max candidate\newline}
+Sort the 5 groups according to their first elements, in the demonstrated case, we have
+\begin{equation}
+    A[1] > B[1] > C[1] > D[1] > E[1] \label{eq:sort_front}
+\end{equation}
+This step shall cost one experiment and thus carries a $T(1)$ runtime.
+
+
+According to \textit{Equation (\ref{eq:divide_group})} and \textit{Equation (\ref{eq:sort_front})}, we must have $A[1]$ being the material with maximum effectiveness amount all candidates. We may therefore add $A[1]$ into the result list.
+
+
+\paragraph{Step 2: Find rest two candidates\newline}
+
+According to \textit{Equation (\ref{eq:divide_group})} and \textit{Equation (\ref{eq:sort_front})}, we may safely claim the rest two candidates with top effetiveness must be among $A[2], A[3], B[1], B[2], C[1]$. Since it is known that $B[1] > C[1] > D[1] > E[1]$, we may discard $D[1], E[1]$ -- as there are always less effective in comparsion with $B[1], C[1]$ -- and therefore discarding group $D, E$, once again according to \textit{Equation (\ref{eq:divide_group})}.
+
+However, we cannot determine the expicit relationship between  $A[2], A[3], B[1], B[2], C[1]$, thus we conduct another experiment and add the top two candidates to the result list. This step shall cost one experiment and thus carries a $T(1)$ runtime.
+
+
+\paragraph{Total Runtime}
+
+\begin{equation}
+    T_{\text{total}} = T(5) + T(1) + T(1) = T(7) \label{eq:q4_runtime}
+\end{equation}
+
+As \textit{Equation (\ref{eq:q4_runtime})} is a sum of runtime cost from each step, we may conclude that our algoritm has a runtime of $T(4)$.
 
 % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % %
 % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % %
