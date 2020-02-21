@@ -445,6 +445,9 @@ As \textit{Equation (\ref{eq:q4_runtime})} is a sum of runtime cost from each st
     \end{algorithmic}
 \end{algorithm}
 
+We also provide a runnable \ilc{Python} implenetation of the pseudo-code with real-time outputs. Please checkout
+\href{https://gist.github.com/choH/aa6ef8d549216ca1aa47a2aedab8dfa8}{\ilc{quick\_miss.py}} if needed.
+
 \subsubsection{(b)}
 
 It is known that \textsc{QuickSort} has an average runtime of $\Theta(n\log n)$ due to the fact that it is considered \textit{case 2} of the master theorem: as it has $n$ nodes on each level and with a depth of $\log n$, thus $\Theta(n\log n)$. Our \textsc{QuickMiss} algorithm has a runtime of $\Theta(n)$ due to it only calls \textsc{Partition} on either left portion or right portion to the \ilc{pivot}, but never both (indicated in \ilc{line 4-7} of \textsc{QuickMiss}). Thus, on each level it will always have less than $n$ nodes, therefore forming a \textit{case 3} of the master theorem. The master theorem suggests, in \textit{case 3} the roots dominate the leaves and therefore determines the runtime of the algorithm -- as \textsc{QuickSort} has $n$ roots at the beginning, we may conclude it has a runtime of $\Theta(n)$.\newline
