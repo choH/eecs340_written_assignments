@@ -402,7 +402,7 @@ As \textit{Equation (\ref{eq:q4_runtime})} is a sum of runtime cost from each st
 \newpage
 \section{Problem 4}
 
-\subsubsection{(a)}
+\subsubsection{(a)}\label{sec:4.a}
 
 \begin{algorithm}
 \caption{QuickMiss(C, D, p, r, missLeft)}\label{QuickMiss}
@@ -433,7 +433,7 @@ As \textit{Equation (\ref{eq:q4_runtime})} is a sum of runtime cost from each st
         \State $q \gets p$
         \For {$i \gets p$ \textbf{to} $r$}
             \If {$\textsc{Compare-Strings}(A[i], A[r])$}
-                \State $\textsc{Swap}(A[i], A[q])$ \Comment{Exchange the two elements.}
+                \State $\textsc{Swap}(A[i], A[q])$ \Comment{Exchange two elements.}
                 \State $q \gets q+1$
             \EndIf
         \EndFor
@@ -445,7 +445,9 @@ As \textit{Equation (\ref{eq:q4_runtime})} is a sum of runtime cost from each st
 
 \subsubsection{(b)}
 
-It is known that \textsc{QuickSort} has an average runtime of $O(n\log n)$ due to the fact that it is considered \textit{case 2} of the master theorem: as it has $n$ nodes on each level and with a depth of $\log n$, thus $O(n\log n)$. Our \textsc{QuickMiss} algorithm has a runtime of $O(n)$ due to it only calls \textsc{Partition} on either left portion or right portion to the \ilc{pivot}, but never both. Thus, on each level it will always has less than $n$ nodes, therefore forming a \textit{case 3} of the master theorem. The master theorem suggest, in \textit{case 3} the roots dominate the leaves and therefore determine the runtime of the algorithm -- as \textsc{QuickSort} has $n$ roots at the beginning, we may conclude it has a runtime of $\Theta(n)$.
+It is known that \textsc{QuickSort} has an average runtime of $\Theta(n\log n)$ due to the fact that it is considered \textit{case 2} of the master theorem: as it has $n$ nodes on each level and with a depth of $\log n$, thus $\Theta(n\log n)$. Our \textsc{QuickMiss} algorithm has a runtime of $\Theta(n)$ due to it only calls \textsc{Partition} on either left portion or right portion to the \ilc{pivot}, but never both (indicated in \ilc{line 4-7} of \textsc{QuickMiss}). Thus, on each level it will always have less than $n$ nodes, therefore forming a \textit{case 3} of the master theorem. The master theorem suggests, in \textit{case 3} the roots dominate the leaves and therefore determines the runtime of the algorithm -- as \textsc{QuickSort} has $n$ roots at the beginning, we may conclude it has a runtime of $\Theta(n)$.\newline
+
+To demonstrate it mathmatically, we have \textsc{QuickSort} being $T(n) = 2T(n/2) + \Theta(n)$ where  the leading $2T(n/2)$ indicates it will recursively handle both parts of the partition. Since \textsc{QuickMiss} only needs to handle one part, we have \textsc{QuickMiss} being $T(n) = T(n/2) + \Theta(n)$. This means we have a comparsion between $n^{\log_2 1}$ and $n$, which is equivalent to $n^0 \Rightarrow 1$ and $n$. Then we may have $f(n) = \Omega(n^{\log_2 1 + \epsilon}) = \Omega(n^{0 + \epsilon})$ for $\epsilon = 1$, and we may prove that $T(n) = \Theta(n)$ for \textsc{QuickMiss}.
 
 
 % \section{References}
