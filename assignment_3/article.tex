@@ -407,19 +407,19 @@ As \textit{Equation (\ref{eq:q4_runtime})} is a sum of runtime cost from each st
 \begin{algorithm}
 \caption{QuickMiss(C, D, p, r, missLeft)}\label{QuickMiss}
     \begin{algorithmic}[1]
-        \Procedure{QuickMiss}{C, D, p, r, missLeft}
-        \If {$p < r$}
-            \State $q \gets \textsc{Partition}(C, p, r)$
-            \If {$C[q] == D[q]$}
-                \State \Return $\textsc{QuickMiss}(C, D, q+1, r, False)$
-            \Else
-                \State \Return $\textsc{QuickMiss}(C, D, p, q-1, True)$
+        \Procedure{QuickMiss}{C, D, p, r, missLeft} \Comment{Set any value to $missLeft$ for initial call.}
+        \If {$p < r$} \Comment{Base case, terminates when $p = r$.}
+            \State $q \gets \textsc{Partition}(C, p, r)$ \Comment{Get pivot index from inclusive $C[p, r]$.}
+            \If {$C[q] == D[q]$} \Comment{If no missing element on left portion to $q$.}
+                \State \Return $\textsc{QuickMiss}(C, D, q+1, r, False)$ \Comment{Thus check right partition.}
+            \Else \Comment{If no missing element on right portion to $q$.}
+                \State \Return $\textsc{QuickMiss}(C, D, p, q-1, True)$ \Comment{Thus check left partition.}
             \EndIf
         \EndIf
         \If {$missLeft == True$}
-            \State \Return $D[p]$
+            \State \Return $D[p]$ \Comment{Missing element index within range of $C$, simply return.}
         \Else
-            \State \Return $D[r+1]$
+            \State \Return $D[r+1]$ \Comment{Missing element $> r$, $+1$ to retrive from $D$.}
         \EndIf
         \EndProcedure
     \end{algorithmic}
@@ -432,7 +432,7 @@ As \textit{Equation (\ref{eq:q4_runtime})} is a sum of runtime cost from each st
         \Procedure{Partition}{A, p, r}
         \State $q \gets p$
         \For {$i \gets p$ \textbf{to} $r$}
-            \If {$\textsc{Compare-Strings}(A[i], A[r])$}
+            \If {$\textsc{Compare-Strings}(A[i], A[r])$} \Comment{if $A[i] < A[r]$ alphabetically.}
                 \State $\textsc{Swap}(A[i], A[q])$ \Comment{Exchange two elements.}
                 \State $q \gets q+1$
             \EndIf
