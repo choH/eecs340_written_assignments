@@ -61,7 +61,9 @@ For this recurrance, we have a comparsion between $n^{\log_a a^2}$ and $n^2$, th
 
 \section{(c) $T(n) = T(\lambda n) + n^{\lambda}$}
 
-We may rewrite it as $T(n) = T\Big(\frac{n}{\frac{1}{\lambda}}\Big) + n^{\lambda}$. Thus, we have a comparsion between $n^{\log_{\frac{1}{\lambda}} 1}$ and $n^{\lambda}$, which is equivalent as $n^0$ and $n^{\lambda}$, then we have $f(n) = \Omega(n^{\log_b a + \epsilon})$ for $\epsilon = \lambda$. We may also show $af(\frac{n}{b}) \leq cf(n)$ for $1 \cdot f\Big(\frac{n}{\frac{1}{\lambda}}\Big) = f(\lambda n)$. Combined, together, we can apply \textit{case 3} of the master theorem and conclude that the solution is $T(n) = \Theta(n^\lambda)$.
+We may rewrite it as $T(n) = T\Big(\frac{n}{\frac{1}{\lambda}}\Big) + n^{\lambda}$. Thus, we have a comparsion between $n^{\log_{\frac{1}{\lambda}} 1}$ and $n^{\lambda}$, which is equivalent as $n^0$ and $n^{\lambda}$, then we have $f(n) = \Omega(n^{\log_b a + \epsilon}) = \Omega(n^{0 + \epsilon})$ for $\epsilon = \lambda$.
+
+We may also show $af(\frac{n}{b}) \leq cf(n)$ for $c = \lambda^\lambda$; as $af(\frac{n}{b})  = 1 \cdot f\Big(\frac{n}{\frac{1}{\lambda}}\Big) = f(\lambda n) = (\lambda n)^{\lambda}$, where $(\lambda n)^{\lambda} \leq cf(n) =  \lambda^\lambda \cdot n^{\lambda}$. Combined the above two proofs together, we can apply \textit{case 3} of the master theorem and conclude that the solution is $T(n) = \Theta(n^\lambda)$.
 
 \section{(d) $T(n) = aT(\frac{n}{a}) + \Theta(n^{\lambda}(\log n)^b)$}
 For this recurrance, we have a comparsion between $n^{\log_a a}$ and $n^{\lambda}(\log n)^b$, which is equivalent to comparing $n$ and $n^{\lambda}(\log n)^b$. We may prove that $n$ is polynomially larger than $n^{\lambda}(\log n)^b$ by analyzing:
