@@ -99,15 +99,16 @@ We may rewrite it as $T(n) = T(\alpha n) + T((1-\alpha)n) + dn$ for $d \in \math
 \begin{align}
     T(k + 1) &= T(\alpha(k + 1)) + T((1-\alpha)(k+1)) + d(k + 1) \\
     &\leq [c \cdot \alpha (k + 1) \log(\alpha(k + 1)) - c'(k+1)] + \nonumber\\
-    & \ \ \ \ [c \cdot ((1- \alpha)(k + 1))\log((1-\alpha)(k + 1)) - c'(k+1)]+ d(k + 1) \nonumber \\
-    &\leq c \cdot \alpha (k + 1) \log(\alpha(k + 1)) + c(1-\alpha)(k + 1)\log(\alpha(k+1)) + d(k + 1) - 2c'(k+1) \nonumber \\
-    &\leq (c \alpha + c(k + 1) -  c \alpha) \cdot \log(\alpha(k + 1)) +  d(k + 1) - 2c'(k+1)\nonumber \\
-    &\leq c(k + 1) \cdot \log(\alpha(k + 1)) +  (d-2c')(k + 1)\nonumber \\
-    &\leq c(k + 1) \cdot \log(k + 1)+  (d-2c')(k + 1)\nonumber \\
-    \Longrightarrow T(k + 1) &\leq c(k + 1) \cdot \log(k + 1) \ \ \ \text{for $c'= \frac{1}{2}d$}
+    & \ \ \ \ [c \cdot ((1- \alpha)(k + 1))\log((1-\alpha)(k + 1)) - c'(1-\alpha)(k + 1)]+ d(k + 1) \nonumber \\
+    &\leq c \cdot \alpha (k + 1) \log(\alpha(k + 1)) + c(1-\alpha)(k + 1)\log(\alpha(k+1)) +\nonumber \\
+    & \ \ \ \  d(k + 1) - c'(k+1)- c'(1-\alpha)(k + 1) \nonumber \\
+    &\leq (c \alpha + c(k + 1) -  c \alpha) \cdot \log(\alpha(k + 1)) +  d(k + 1) -  c'(1-\alpha + 1)(k + 1)\nonumber \\
+    &\leq c(k + 1) \cdot \log(\alpha(k + 1)) +  (d-c'\alpha)(k + 1)\nonumber \\
+    &\leq c(k + 1) \cdot \log(k + 1)+  (d-c'\alpha)(k + 1)\nonumber \\
+    \Longrightarrow T(k + 1) &\leq c(k + 1) \cdot \log(k + 1) \ \ \ \text{for $c'= \frac{d}{\alpha}$}
 \end{align}
 
-As now we have $T(k + 1) \leq c(k + 1) \cdot \log(k + 1)$ for $c'= \frac{1}{2}d$, we may say it is true for $T(k)$ for all $k \in [1, n)$.
+As now we have $T(k + 1) \leq c(k + 1) \cdot \log(k + 1)$ for $c'= \frac{d}{\alpha}$, we may say it is true for $T(k)$ for all $k \in [1, n)$.
 \end{proof}
 
 
