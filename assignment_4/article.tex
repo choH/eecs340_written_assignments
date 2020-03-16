@@ -1,6 +1,7 @@
 \documentclass[11pt]{article}
 \usepackage{setspace}
 \setstretch{1}
+\usepackage[T1]{fontenc}
 \usepackage{amsmath,amssymb, amsthm}
 \usepackage{graphicx}
 \usepackage{bm}
@@ -60,6 +61,39 @@
 % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % %
 % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % %
 \section{Problem 2}
+
+\subsection{Procedure \textsc{PreProcess}(A)}
+
+\begin{algorithm}
+\caption{PreProcess(A)}\label{PreProcess}
+    \begin{algorithmic}[1]
+        \Procedure{PreProcess}{A, p, r}
+        \State \text{Let $C[0, 1, ..., k]$ be an arry of $0$.}
+        \For {$i \gets 0$ \textbf{to} $n$}
+            \State $C[A[i]] = C[A[i]] + 1$
+        \EndFor
+        \For {$j \gets 1$ \textbf{to} $k$}
+            \State $C[j] = C[j] + C[j-1]$
+        \EndFor
+        \State \Return $C$
+        \EndProcedure
+    \end{algorithmic}
+\end{algorithm}
+
+\subsection{Procedure \textsc{Query}(A, a, b)}
+
+\begin{algorithm}
+\caption{Query(A, a, b)}\label{Query}
+    \begin{algorithmic}[1]
+        \Procedure{Query}{A, a, b}
+        \If {$a == 0$}
+            \State \Return $A[b]$
+        \Else
+            \State \Return $A[b] - A[a-1]$
+        \EndIf
+        \EndProcedure
+    \end{algorithmic}
+\end{algorithm}
 
 % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % %
 % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % %
