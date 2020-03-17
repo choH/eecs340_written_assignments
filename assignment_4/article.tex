@@ -64,7 +64,7 @@
 
 \subsection{Procedure \textsc{PreProcess}(A)}
 
-\begin{algorithm}
+\begin{algorithm}[H]
 \caption{PreProcess(A)}\label{PreProcess}
     \begin{algorithmic}[1]
         \Procedure{PreProcess}{A, p, r}
@@ -82,7 +82,7 @@
 
 \subsection{Procedure \textsc{Query}(A, a, b)}
 
-\begin{algorithm}
+\begin{algorithm}[H]
 \caption{Query(A, a, b)}\label{Query}
     \begin{algorithmic}[1]
         \Procedure{Query}{A, a, b}
@@ -99,6 +99,75 @@
 % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % %
 % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % %
 \section{Problem 3}
+
+
+\begin{algorithm}[H]
+\caption{Sparse-Transpose(R, C, V, m, n, k)}\label{transpose}
+    \begin{algorithmic}[1]
+        \Procedure{Sparse-Transpose}{A, a, b}
+        \State \text{Let $CH[0, 1, ..., n]$ be an arry of $0$.}
+        \State \text{Let $VH[0, 1, ..., n]$ be an arry of $0$.}
+        \For {$i \gets 0$ \textbf{to} $n$}
+            \State $start \gets R[i]$
+            \State $end \gets R[i+1]-1$
+            \State \text{Let $CPR[\ ]$ be an empty array.}
+            \State \text{Let $VPR[\ ]$ be an empty array.}
+            \For {$j \gets start$ \textbf{to} $end$}
+                \State $CPR[i].append(C[j])$
+                \State $VPR[i].append(V[j])$
+            \EndFor
+            \State $CH[i].append(CPR)$
+            \State $VH[i].append(VPR)$
+        \EndFor
+        \State \text{Let $R[\ ]$ be an empty array.}
+        \State \text{Let $C[\ ]$ be an empty array.}
+        \State \text{Let $V[\ ]$ be an empty array.}
+        \State $V.append(0)$
+        \State \text{Let $len\_max$ to be the maximum length amoung all elements in $CH$}.
+        \For {$i \gets 0$ \textbf{to} $len\_max$}
+            \State $\textsc{Pop-Smallest}(R, C, V, CH, VH, len\_max)$
+        \EndFor
+        \For {$i \gets 1$ \textbf{to} $n$}
+            \State $R[i] = R[i] + R[i-1]$
+        \EndFor
+        \State \Return R, C, V
+        \EndProcedure
+    \end{algorithmic}
+\end{algorithm}
+
+\begin{algorithm}[H]
+\caption{Pop-Smallest(R, C, V, CH, VH, len\_max)}\label{pop}
+    \begin{algorithmic}[1]
+        \Procedure{Pop-Smallest}{R, C, V, CH, VH, len\_max}
+        \State $min\_value \gets CH[0][0]$
+        \State $min\_i \gets 0$
+        \State $min\_j \gets 0$
+        \For {$i \gets 0$ \textbf{to} $len\_max$}
+            \State $R\_counter \gets 0$
+            \For {$j \gets 0$ \textbf{to} $n$}
+                \If {$CH[j][i] < min\_value$ or ($CH[j][i] == min\_value$ and $j < min\_j$)}
+                    \State $min\_value \gets CH[j][i]$
+                    \State $min\_i \gets i$
+                    \State $min\_j \gets j$
+                    \State \text{continue}
+                \EndIf
+                \If {$CH[j][i] == min\_value$}
+                    \State $R\_counter \gets R\_counter + 1$
+                    \If {$j < min\_j$}
+                        \State $min\_value \gets CH[j][i]$
+                        \State $min\_i \gets i$
+                        \State $min\_j \gets j$
+                    \EndIf
+                \EndIf
+            \EndFor
+            \State $CH[min\_j].remove(min\_i)$
+            \State $C.append(min\_j)$
+            \State $V.append(VH[min\_j][min\_i])$
+            \State $VH[min\_j].remove(min\_i)$
+            \State $R.append(R\_counter)$
+        \EndFor
+    \end{algorithmic}
+\end{algorithm}
 
 % \section{References}
 %
