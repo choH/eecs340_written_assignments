@@ -171,7 +171,7 @@ Let $X_k = x_1x_2...x_k$ and likewise for $Y_k$.
 \end{equation}
 
 \paragraph{(v)}
-We have $T(n) = \Theta(mn)$. A matrix of $m \cdot n$ is filled when two strings are listing their possible reductions of chars, thus there are $\Theta(mn)$ subproblems. Each subproblem takes $\Theta(1)$ to execute.\\
+We have $T(n) = \Theta(mn)$. A matrix of $m \cdot n$ is filled when two strings are listing their possible reductions of chars, thus there are $\Theta(mn)$ subproblems. Each subproblem takes $\Theta(1)$ to execute as all edit options cost the same.\\
 $\Longrightarrow T(n) =  \Theta(mn) \cdot \Theta(1) =  \Theta(mn)$
 
 % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % %
@@ -179,6 +179,12 @@ $\Longrightarrow T(n) =  \Theta(mn) \cdot \Theta(1) =  \Theta(mn)$
 % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % %
 \section{Problem 2}
 
+\subsection{(a)}
+\begin{proof}
+Suppose we have $r_{ij}$ for the optimal exchange between currencies $i \to j$, with an substructure of $r_{ij} = r_{ik} \cdot r_{kj}$ (for $k \in [i,j]$). We want to show both $r_{ik}$ and $r_{kj}$ must be the optimal exchange between currencies $i \to k$ and $k \to j$.
+
+Without lost of generality, assume we have $r'_{ik}$ where $r'_{ik} > r_{ik}$, then there must be $r'_{ik} \cdot r_{kj} > r_{ij}$. Which suggest $r_{ij}$ is no longer optimal for the exchange between currencies $i \to j$ and the assumption is void. Thus, we proved substructure $r_{ik}$ must be at its optimal structure by contradiction. And an optimal $r_{ij}$ is only obtainable with optimal substcutures.
+\end{proof}
 
 % \section{References}
 %
