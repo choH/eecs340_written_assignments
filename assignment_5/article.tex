@@ -186,6 +186,14 @@ Suppose we have $r_{ij}$ for the optimal exchange between currencies $i \to j$, 
 Without lost of generality, assume we have $r'_{ik}$ where $r'_{ik} > r_{ik}$, then there must be $r'_{ik} \cdot r_{kj} > r_{ij}$. Which suggest $r_{ij}$ is no longer optimal for the exchange between currencies $i \to j$ and the assumption is void. Thus, we proved substructure $r_{ik}$ must be at its optimal structure by contradiction. And an optimal $r_{ij}$ is only obtainable with optimal substcutures.
 \end{proof}
 
+\subsection{(b)}
+
+It is certainly possible. Assume the optimal exchange path found by the abovementioned procedure is a long path with a tiny amount of gain after each exchange, e.g., for $r_{az}$ we have to do $ r_{ab} \cdot r_{bc} \cdot ... \cdot r_{yz}$, where after each exchange the accumlated value become $1.0001$ times of before, and an direct exchange rate between currencies $a \to z$ is $1.0001$ as well.
+
+Supposely the best exchange path with no exchange fee is to do as many of positive exchanges as possible, as the accumlated values will only be larger and larger, result in a maximum amount of currency $z$ at the end. But if we set $f(k) = 0.5$ for all exchanges, the more exchange we do, the more money we lost -- since the tiny amount of gain of one exchange cannot cover the high exchange fee. In this case, the best exchange path would be a direct exchange between currencies $a \to z$ is $1$.
+
+Since the optimal exchange path with $f(k) = 0.5$ is not the same as the optimal path produced by the abovementioned procedure, we have proven the statement.
+
 % \section{References}
 %
 % \nocite{*}
