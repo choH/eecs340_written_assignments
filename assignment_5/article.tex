@@ -55,7 +55,56 @@
 \subsection{(a)}
 
 % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % %
-\subsubsection{(i)}
+\paragraph{(i)}
+
+The last operation base on operator $o_{\text{last}}$ for $o_{\text{last}} \in \{o_1, o_2, o_3, ..., o_{n-1}\}$.
+
+\paragraph{(ii)} Assuming the last operation will be $T[i, j] \ o_{\text{last}} \ T[j+1, k] = T_{\text{final}}$, where $T_{\text{final}}$ provides the optimal output for $x_1 o_1 x_2 o_2 ... x_{n-1} o_{n-1} x_n$. There must be:
+
+
+\begin{itemize}
+    \item $T[i, j]$ provides the optimal output for $x_i o_i x_{i+1} o_{i+1} ... x_{j}$.
+    \item $T[j+1, k]$ provides the optimal output for $x_{j+1} o_{j+1} x_{j+2} o_{j+2} ... x_{k}$.
+\end{itemize}
+
+\begin{proof}
+    Without lost of generality, assume $T[i, j]$ is not optimal for $x_i o_i x_{i+1} o_{i+1} ... x_{j}$, there must be an $T'[i, j]$ where $T'[i, j] > T[i,j]$. Then we may have $T'[i, j] \ o_{\text{last}} \ T[j+1, k] > T_{\text{final}}$. \\
+    However, it is known that $T[i, j]$ provides the optimal output for $x_i o_i x_{i+1} o_{i+1} ... x_{j}$, for $T'[i, j] > T[i,j]$ to exist,  $T[i, j]$ is no longer optimal. Thus we may say $T[i, j]$ is optimal by contradiction.
+\end{proof}
+
+\paragraph{(iii)}
+
+\begin{itemize}
+    \item Subproblem: $T[i, j]$ for the optimal output of $x_i o_i x_{i+1} o_{i+1} ... x_{j}$.
+    \item Overall problem: $T[1, n]$ for the optimal output of $x_1 o_1 x_2 o_2 ... x_{n-1} o_{n-1} x_n$.
+\end{itemize}
+
+\paragraph{(iv)}
+
+\begin{equation}
+    T[i,k] =
+    \begin{cases}
+        x_i & \text{if \ } i = k \\
+        max\{T[i,j] \ o_j \ T[j+1, k]\} &\text{for \ } i \leq j \leq k \\
+    \end{cases}\nonumber
+\end{equation}
+
+\paragraph{(v)}
+
+We have $T(n) = \Theta(n^3)$. As there are $\Theta(n^2)$ subproblems and for each subproblem of $T[i,k]$, there are $\Theta(k-i)$ choices (which is essential $\Theta(n)$). Also each choice takes $\Theta(1)$ too execute. \\
+$\Longrightarrow T(n) =  \Theta(n^2) \cdot  \Theta(n) \cdot \Theta(1) =  \Theta(n^3)$
+
+
+\paragraph{(vi)}
+
+\begin{algorithm}[H]
+\caption{Largest-Output(T, n)}
+    \begin{algorithmic}[1]
+        \Procedure{Largest-Output}{T, n}
+        \For {$i \gets 1$ \textbf{to} $n$}
+        \EndFor
+    \end{algorithmic}
+\end{algorithm}
 
 
 
