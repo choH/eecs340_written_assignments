@@ -50,6 +50,7 @@
 % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % %
 \section{Problem 1}
 
+I did \textbf{(ii)} and \textbf{(vi)} on \textbf{Problem 1(a)}.
 % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % %
 % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % %
 \subsection{(a)}
@@ -112,6 +113,36 @@ $\Longrightarrow T(n) =  \Theta(n^2) \cdot  \Theta(n) \cdot \Theta(1) =  \Theta(
 % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % %
 \subsection{(b)}
 
+
+\paragraph{(i)} Determine the last coin $c_{\text{last}}$ which will be added to the change set $\{c_1, c_2, c_3, ..., c_{\text{last}-1}\}$. Where the sum of elements of such set plus $c_{\text{last}}$ should be equal to $t$.
+
+
+\paragraph{(iii)}
+
+\begin{itemize}
+    \item Subproblem: $f(v)$ provides the minimum number of coins to make change for $v$, given $n$ types of coin denominations are available. There must be  $v \in [0, t]$ and $v$ must be equal to the sum of some coins from the given $n$ types of coin denominations, to represent a value that is achievable by given coins.
+    \item Overall problem: $f(t)$ provides the minimum number of coins to make change for $t$, given $n$ types of coin denominations are available.
+\end{itemize}
+
+
+\paragraph{(iv)}
+
+Let $n_c$ be a type of coin from the provided $n$ types of coins, which means $n_c$ can potentially hold $n$ types of values. We will try all $n_c$(s) as we don't know which coin to use for the $c_1$.
+
+
+\begin{equation}
+    f(v) =
+    \begin{cases}
+        0 & \text{if \ } v = 0 \\
+        min\{f(v - n_c) + 1\} & \text{if \ } v > 0 \\
+    \end{cases}\nonumber
+\end{equation}
+
+
+\paragraph{(v)}
+
+We have $T(n) = \Theta(nt)$. There are $\Theta(t)$ subproblems, as we can divide at most $t$ groups of coin(s) for a total value of $t$ (as for all coins being value $1$), and for each group there are at most $n$ possible choices to iterate (thus $\Theta(n)$). Each choice takes $\Theta(1)$ to execute. \\
+$\Longrightarrow T(n) =  \Theta(t) \cdot \Theta(n) \cdot \Theta(1) =  \Theta(nt)$
 
 % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % %
 % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % %
