@@ -148,11 +148,37 @@ $\Longrightarrow T(n) =  \Theta(t) \cdot \Theta(n) \cdot \Theta(1) =  \Theta(nt)
 % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % %
 \subsection{(c)}
 
+\paragraph{(i)} Determine what edit to make (or not making any edit) when reached the last character of $X$.
+
+\paragraph{(iii)}
+Let $X_k = x_1x_2...x_k$ and likewise for $Y_k$.
+
+\begin{itemize}
+    \item Subproblem: $D(i, j)$ provides the shortest edit distance between $X_i$ and $Y_j$.
+    \item Overall problem: $D(m, n)$ provides the shortest edit distance between $X_m$ and $Y_n$.
+\end{itemize}
+
+\paragraph{(iv)}
+
+\begin{equation}
+    D(i, j) =
+    \begin{cases}
+        j & \text{if \ } i = 0 \\
+        i & \text{if \ } j = 0 \\
+        D(i-1, j-1) & \text{if \ } x_i = y_j \\
+        min\{D(i, j-1) + 1, D(i-1, j) + 1, D(i-1, j-1) + 1  \} & \text{otherwise}\\
+    \end{cases}\nonumber
+\end{equation}
+
+\paragraph{(v)}
+We have $T(n) = \Theta(mn)$. A matrix of $m \cdot n$ is filled when two strings are listing their possible reductions of chars, thus there are $\Theta(mn)$ subproblems. Each subproblem takes $\Theta(1)$ to execute.\\
+$\Longrightarrow T(n) =  \Theta(mn) \cdot \Theta(1) =  \Theta(mn)$
 
 % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % %
 % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % %
 % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % %
 \section{Problem 2}
+
 
 % \section{References}
 %
