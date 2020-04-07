@@ -50,7 +50,7 @@
 % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % %
 \section{Problem 1}
 
-I did \textbf{(ii)} and \textbf{(vi)} on \textbf{Problem 1(a)}.
+Hi TA! I did \textbf{(ii)} and \textbf{(vi)} on \textbf{Problem 1(a)}. Thanks.
 % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % %
 % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % %
 \subsection{(a)}
@@ -97,13 +97,47 @@ $\Longrightarrow T(n) =  \Theta(n^2) \cdot  \Theta(n) \cdot \Theta(1) =  \Theta(
 
 
 \paragraph{(vi)}
+For $X$ being a list of operands \ilc{[x\_{1}, x\_{2}, x\_{3}, ... , x\_{n}]}, likewise $O$ being a list of operators \ilc{[o\_{1}, o\_{2}, o\_{3},... , o\_{n-1}]}.
+
+(Discussed with Yuhui ZHANG on this)
 
 \begin{algorithm}[H]
-\caption{Largest-Output(T, n)}
+\caption{Largest-Output(X, O, n)}
     \begin{algorithmic}[1]
-        \Procedure{Largest-Output}{T, n}
+        \State \text{Create two empty $n \times n$ 2D arrays: $E$ and $S$.}
+        \Procedure{Largest-Output}{X, O, n}
         \For {$i \gets 1$ \textbf{to} $n$}
+            \State $E[i, i] \gets X[i]$ \Comment{Get operands on diagonal}
         \EndFor
+        \For {$cur \gets 2$ \textbf{to} $n$}
+            \For {$i \gets 1$ \textbf{to} $n-cur+1$}
+                \State {$j = i + cur - 1$}
+                \State $E[i, j] \gets - \infty$
+                \For {$k \gets i$ \textbf{to} $j-1$}
+                    \State $holder \gets eval("E[i,k] + O[k] + E[k + 1, j]$
+                    \If {$holder > E[i, j]$}
+                        \State{$E[i, j] = holder$}
+                        \State{$S[i, j] = k$}
+                    \EndIf
+                \EndFor
+            \EndFor
+        \EndFor
+    \State Return  E, S
+    \end{algorithmic}
+\end{algorithm}
+
+\begin{algorithm}[H]
+\caption{Display(X, O, s, i, j)}
+    \begin{algorithmic}[1]
+        \Procedure{Display}{X, O, s, i, j}
+        \If {$i == j$}
+            \State $print \ X[i]$
+        \Else
+            \State $print $ \textxc{Display(X, O,s, i, s[i,j] )}
+            \State $print\  O[s[i, j]]$
+            \State $print $ \textxc{Display(X, O,s,  s[i,j]+1, j )}
+        \EndIf
+
     \end{algorithmic}
 \end{algorithm}
 
