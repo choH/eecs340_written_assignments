@@ -104,8 +104,25 @@ Hi Grader! Please note the boxes in following diagrams are merely provided for v
 % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % %
 \section{Problem 2}
 
+\textbf{Greedy choice property}: In some optimal solutions, the activity with the earliest deadline is scheduled first.
 
+Let $S$ be an arbitrarily picked optimal solution, let event $E$ being the activity with the earlist deadline, let event $F$ being the firstly scheduled activity in $S$. We may have two cases:
+\begin{itemize}
+    \item $E$ is the same activity as $F$, then the property is proven.
+    \item $E$ is not the same activity as $F$, which means $F$ is scheduled ealier than $E$. Now we may form a solution $S'$ by swapping the order of $E$ with any activities scheduled before $E$, until $E$ swaps with $F$ (after such swap $E$ should be the firstly scheduled activity in $S$).
+\end{itemize}
 
+We may safely perform such swap(s) in the latter case due to the fact that such swap will have no effect on the \textit{maximum delay} time. For any activity $i$ to be scheduled, let $\Delta_i$ and $\Delta'_i$ represent its delay in solution $S$ and $S'$ respectively. The only case that we will have $\Delta'_i > \Delta_i$ is if activity $i$ is scheduled before $E$ in $S$ (thus after swaps, scheduled after $E$ in $S'$, and caused even more delay). In such scenario we may have:
+
+\begin{align*}
+    \Delta'_i &= \Delta_i + t_E = f_i - d_i + t_E \\
+    &\leq s_E + t_E - d_i \\
+    &= f_E - d_i \\
+    &\leq f_E - d_e = \Delta_E \\
+    &\Longrightarrow \ \Delta'_i \leq \Delta_E
+\end{align*}
+
+Since we know that the maximum delay in $S$ must be $\geq \Delta_E$ (for either $E$ causing the maximum delay or some other activity), and also since $\Delta'_i$ is calculated from arbitrarily picked $i$ in $S'$, we may conclude that the maximum delay in $S'$ will not be larger than the maximum delay in $S$. Consider $S$ is set to be optimal -- meaning its maximum maximum delay cannot get any shorter -- we must be $\Delta S'_{\text{max}} = \Delta S_{\text{max}}$; which means $S'$ is also optimal. And since $E$ is the firstly scheduled activity in $S'$, we have proven the greedy choice property to be valid.
 
 % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % %
 % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % %
