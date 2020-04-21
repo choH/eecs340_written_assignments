@@ -141,11 +141,13 @@ The greedy chioce will lead to a solution $\{2 \times \$8, 4 \times \$1\}$ for a
 % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % %
 \subsection{(b)}
 
-Assuming we have an optimal solution of $S = <x_o, x_1, x_2, ..., x_k>$, where each $x_i$ respectively represent the amount of $c_i$ coin in the avalivable coin denominations $\{c_1, c_2, ..., c_k\}$ for $1 \leq i \leq k$.
+Assuming we have an optimal solution of $S = <x_o, x_1, x_2, ..., x_k>$, where each $x_i$ respectively represent the amount of $c_i$ coin in the avalivable coin denominations $\{c_1, c_2, ..., c_k\}$ for $1 \leq i \leq k$.\newline
 
-We may observe that there must be $x_i < \frac{c_{i+1}}{c_i}$ for all $1 \leq i \leq k$; as otherwise we may have solution $S' = <x'_o, x'_1, x'_2, ..., x'_k>$ with $x'_i = x_i - \frac{c_{i+1}}{c_i}$ and $x'_{i+1} = x_{i+1} + 1$\footnote{This increment might have to be repeatedly done until the condition of $x_i < \frac{c_{i+1}}{c_i}$ is reached.}. Due to the fact that $\frac{c_{i+1}}{c_i}$ is at least $2$, $S'$ will be a more optimal solution than $S'$ and therefore voids the optimal assumption of $S$. Thus, the property of $x_i < \frac{c_{i+1}}{c_i}$ must be held in the optimal solution.
+We may observe that there must be $x_i < \frac{c_{i+1}}{c_i}$\footnote{I wrote it generally, but $\frac{c_{i+1}}{c_i}$ should be a constant $2$ in this problem.} for all $1 \leq i \leq k$; as otherwise we may have solution $S' = <x'_o, x'_1, x'_2, ..., x'_k>$ with $x'_i = x_i - \frac{c_{i+1}}{c_i}$ and $x'_{i+1} = x_{i+1} + 1$\footnote{This increment might have to be repeatedly done until the condition of $x_i < \frac{c_{i+1}}{c_i}$ is reached.}. Due to the fact that $\frac{c_{i+1}}{c_i}$ is at least $2$, $S'$ will be a more optimal solution than $S$ and therefore voids the optimal assumption of $S$. Thus, the property of $x_i < \frac{c_{i+1}}{c_i}$ must be held in the optimal solution.
 
-Knowing this property, we may safely reach the optimal solution $S$ by keep greedily picking the coins with largest $c$ value possible ($c_{\text{max}} \leq n$). Since if we don't pick -- or don't pick the largest amount possible of -- $c_i$ coin(s) at one point, we will have to pick more $c_j$ coins after (for $1 \leq j < i \leq n$), and that will result in a less optimal solution.
+This means the optimal solution shall have as much as ``larger coins'' as possible, there will be no scenario that mutiple ``smaller coins'' can be added to a ``larger coin'' under an optimal solution.\newline
+
+Knowing this property, we may safely reach the optimal solution $S$ by keep greedily picking the coins with largest $c$ value possible ($c_{\text{max}} \leq n$). Since if we don't pick -- or don't pick the largest amount possible of -- $c_i$ coin(s) at one point, we will have to pick more $c_j$ coins after (for $1 \leq j < i \leq n$), and that will result in a less optimal solution. Thus, to achieve the optmal solution, we may just enforce the greedy choice at every step.
 
 % \section{References}
 %
