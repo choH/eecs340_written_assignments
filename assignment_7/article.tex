@@ -50,6 +50,47 @@
 % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % %
 \section{Problem 1}
 
+\subsection{(a)}
+
+\begin{algorithm}[H]
+\caption{DFS(G)}
+    \begin{algorithmic}[1]
+        \Procedure{DFS}{G}
+        \For{each $u \in G.V$}:
+            \State $u.color$ = WHITE
+            \State $u.z$ = 0
+        \EndFor
+        \For{each $u \in G.V$}:
+            \If{$u.color$ == WHITE}
+                \State \textsc{DFS-Game-Visit(G, u)}
+            \EndIf
+        \EndFor
+    \end{algorithmic}
+\end{algorithm}
+
+\begin{algorithm}[H]
+\caption{DFS-Game-Visit(G, u)}
+    \begin{algorithmic}[1]
+        \Procedure{DFS-Game-Visit}{G, u}
+        \State $z = NULL$
+        \State $u.color$ = GRAY
+        \For{each $v \in Adj(u)$}:
+            \If{$v.color$ == WHITE}
+                \State $z = v.rank$
+                \State $z = \min(z, \textsc{DFS-Game-Visit(G, v)})$
+            \EndIf
+        \EndFor
+        \State $u.color$ = BLACK
+        \If{$z == NULL$}
+            \State $u.z = 0$
+            \State $z = u.rank$
+        \Else
+            \State $u.z = z$
+        \EndIf
+        \State \Return $z$
+    \end{algorithmic}
+\end{algorithm}
+
 % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % %
 % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % %
 % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % %
