@@ -93,6 +93,15 @@
 
 % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % %
 % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % %
+\subsection{(b)}
+
+\paragraph{Justification for runtime} The algorithm is $O(m+n)$ as DFS will first traverse every node, which means it will at least be $O(n)$. In addition, since the graph $G$ is implemented using adjacency list, for each node we will have to traverse through all its adjacent edges -- where such number can be at most $m$ (total number of edges in $G$) for a single node. Thus, the total time complexity is $O(m + n)$.
+
+\paragraph{Justification for correctness} The algorithm basically performs a DFS travesal on the graph $G$ and set the node \ilc{u} with smallest \ilc{rank} value as \ilc{z} to all of node \ilc{u}'s ancestor nodes. Due to the nature of DFS, node \ilc{u}'s ancestor nodes can legally have \ilc{u.rank} as their domination factor, as being \ilc{u}'s ancestors imply the fact these teams have won against team \ilc{u}. Also in \texsc{DFS-Game-Visit} we will not set a node's \ilc{.z} value unless such node is marked as \ilc{BLACK} (which means all of its decedents have been explored). Combine these two observations, each node has explored all of its decendents nodes, and the node's decendent node with the smallest \ilc{rank} will be assigned as all its ancestor nodes' \ilc{.z} value. The algorithm is a perfect mimic of the game logic of domination factor and guaranteed to be correct.
+
+
+% % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % %
+% % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % %
 % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % %
 \section{Problem 2}
 
