@@ -54,7 +54,7 @@
 % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % %
 \subsection{(a)}
 
-Set the each team as a node (vertex) in graph $G$ and make every node fully connected (representing the fact that all teams have played against each other). If one team $A$ beats another team $B$, we will have a directed edge of $A \rightarrow B$ betwen the nodes representing $A$ and $B$.
+Set the each team as a node (vertex) in graph $G$ and make every node fully connected (representing the fact that all teams have played against each other). If one team $A$ beats another team $B$, we will have a directed edge of $A \rightarrow B$ betwen the nodes representing $A$ and $B$. A team's $z$ is set to be $\infty$ if such team has not won against any other team.
 
 \begin{algorithm}[H]
 \caption{DFS(G)}
@@ -62,12 +62,15 @@ Set the each team as a node (vertex) in graph $G$ and make every node fully conn
         \Procedure{DFS}{G}
         \For{each $u \in G.V$}:
             \State $u.color$ = WHITE
-            \State $u.z$ = 0
+            \State $u.z = NULL$
         \EndFor
         \For{each $u \in G.V$}:
             \If{$u.color$ == WHITE}
                 \State \textsc{DFS-Game-Visit(G, u)}
             \EndIf
+        \EndFor
+        \For{each $u \in G.V$}:
+            \State print $u.team, u.z$
         \EndFor
     \end{algorithmic}
 \end{algorithm}
@@ -82,14 +85,20 @@ Set the each team as a node (vertex) in graph $G$ and make every node fully conn
             \If{$v.color$ == WHITE}
                 \State $z = v.rank$
                 \State $z = \min(z, \textsc{DFS-Game-Visit(G, v)})$
+            \Else
+                \State $z = \min(z, v.z)$
             \EndIf
         \EndFor
         \State $u.color$ = BLACK
         \If{$z == NULL$}
-            \State $u.z = 0$
+            \State $u.z = \infty$
             \State $z = u.rank$
         \Else
-            \State $u.z = z$
+            \If{$u.z == NULL$}
+                \State $u.z = z$
+            \Else
+                \State $u.z = \min(u.z, z)$
+            \EndIf
         \EndIf
         \State \Return $z$
     \end{algorithmic}
@@ -101,7 +110,10 @@ Set the each team as a node (vertex) in graph $G$ and make every node fully conn
 
 \paragraph{Justification for runtime} The algorithm is $O(m+n)$ as DFS will first traverse every node, which means it will at least be $O(n)$. In addition, since the graph $G$ is implemented using adjacency list, for each node we will have to traverse through all its adjacent edges -- where such number can be at most $m$ (total number of edges in $G$) for a single node. Thus, the total time complexity is $O(m + n)$.
 
-\paragraph{Justification for correctness} The algorithm basically performs a DFS travesal on the graph $G$ and set the node \ilc{u} with smallest \ilc{rank} value as \ilc{z} to all of node \ilc{u}'s ancestor nodes. Due to the nature of DFS, node \ilc{u}'s ancestor nodes can legally have \ilc{u.rank} as their domination factor, as being \ilc{u}'s ancestors imply the fact these teams have won against team \ilc{u}. Also in \texsc{DFS-Game-Visit} we will not set a node's \ilc{.z} value unless such node is marked as \ilc{BLACK} (which means all of its decedents have been explored). Combine these two observations, each node has explored all of its decendents nodes, and the node's decendent node with the smallest \ilc{rank} will be assigned as all its ancestor nodes' \ilc{.z} value. The algorithm is a perfect mimic of the game logic of domination factor and guaranteed to be correct.
+\paragraph{Justification for correctness} The algorithm basically performs a DFS travesal on the graph $G$ and set node \ilc{u} with the smallest \ilc{rank} value as \ilc{.z} to all of node \ilc{u}'s ancestor nodes. Due to the nature of DFS, node \ilc{u}'s ancestor nodes can legally have \ilc{u.rank} as their domination factor, as being \ilc{u}'s ancestors imply the fact that these teams have won against team \ilc{u}. Since the graph is implemented as $A$ beats $B$ being $A \rightarrow B$, after the DFS tavesal of a root, all nodes within this DFS tree is guaranteed to have the correct \ilc{.z} value, as all teams have been beaten by these nodes have been checked\footnote{Including \ilc{BLACK} nodes, as shown in \textsc{DFS-Game-Visit}'s \ilc{Line 8-9}: if a node is marked as \ilc{BLACK} it means this node's \ilc{.z} value is correct, so that nodes which are reachable to this \ilc{BLACK} node can simply take its \ilc{.z} value without go into the tree of the \ilc{BLACK} node any further}. \newline
+Also in \textsc{DFS-Game-Visit} we will not set a node's \ilc{.z} value unless such node is marked as \ilc{BLACK} (which means all of its decedents have been explored, and all of its reachable node -- regardless marked as \ilc{BLACK} or not, are taken into account). Combine these two observations, each node has explored all of its reachable nodes, and the node's reachable node \ilc{u} with the smallest \ilc{rank} value will be assigned as the \ilc{.z} value of all nodes which have reached node \ilc{u}. The algorithm is a perfect mimic of the game logic of domination factor and guaranteed to be correct.\newline
+
+To speak in a simple way, if we have a node $u$ where $u.rank$ should be the deminate factor of node $x$, we should either have $u$ being a direct decedents of $x$ and therefore promote $u.rank$ as $x.z$ during the DFS travesal from node $x$; or $u$ is explored (marked as \ilc{BLACK}) when $x$ is being traversed, in such case either $u$ or $u$'s ancestor $v$ (marked as \ilc{BLACK} as well) will have the $.z$ value of $u.rank$, and when the travesal of $x$ visits this $u$ or $v$, it will take $u.z$ or $v.z$ directly if it is smaller than its current $z$, and therefore not skiping any beaten team with the lowest \ilc{rank} value. As the algorithm works correctly in both scenarios, the algorithem is guaranteed to be correct.
 
 
 % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % %
