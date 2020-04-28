@@ -41,7 +41,7 @@
 
 \title{\textbf{EECS 340: Assignment 7}}
 
-\author{Shaochen (Henry) ZHONG, \ilc{sxz517} \\ Yuhui ZHANG, \ilc{yxz2052}}
+\author{Shaochen (Henry) ZHONG, \ilc{sxz517}}
 \date{Due and submitted on 04/27/2020 \\ EECS 340, Dr. Koyut{\"u}rk}
 \maketitle
 
@@ -133,7 +133,7 @@ There are two possible cases where we can have a $v.f > u.f$:
     \item Case 1: $v.d < u.d < u.f < v.f$\newline
     In this case $u$ is a decent of $v$, which means there must be a path of $v \rightarrow u$; and known that we have $uv \in E$ (from the question instruction), this implies there is a direct connection of $u \rightarrow v$. Thus, now we have a path of $v \rightarrow u$ and a path of $u \rightarrow v$, $uv$ is guaranteed to be on a circle.
     \item Case 2: $u.d < u.f < v.d < v.f$\newline
-    In this case we have $u$ completely discovered before $v$. This suggest there shoule be no relationship between $u$ and $v$, as $v$ should not be a decendent nor ancestor of $u$. However, it is known from the question that we have $uv \in E$, which implies $v$ must be a decendent of $u$. Thus, this case will not be valid under the question restriction and therefore disregarded.
+    In this case we have $u$ completely discovered before $v$. This suggests there shoule be no relationship between $u$ and $v$, as $v$ should not be a decendent nor ancestor of $u$. However, it is known from the question that we have $uv \in E$, which implies $v$ must be a decendent of $u$. Thus, this case will not be valid under the question restriction and therefore disregarded.
 \end{itemize}
 
 As all legal case(s) shows $uv$ is guaranteed to be on a circle, we may prove the statement to be true.
@@ -154,19 +154,13 @@ It is shown that there is a path from $v$ to $u$ as $v \rightarrow a \rightarrow
 % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % %
 \section{Problem 4}
 
-\subsection{Shaochen (Henry) ZHONG's proof of course evalution}
 
 \begin{figure}[H]
     \centering
     \includegraphics[width=0.7\linewidth]{{fig/fig_4_a.png}}
 \end{figure}
 
-\subsection{Yuhui ZHANG's proof of course evalution}
 
-\begin{figure}[H]
-    \centering
-    \includegraphics[width=0.7\linewidth]{{fig/fig_4_b.png}}
-\end{figure}
 
 % \section{References}
 %
