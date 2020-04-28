@@ -162,6 +162,34 @@ It is shown that there is a path from $v$ to $u$ as $v \rightarrow a \rightarrow
     \includegraphics[width=0.7\linewidth]{{fig/fig_4_a.png}}
 \end{figure}
 
+% Credit to Peter Grill on https://tex.stackexchange.com/questions/58901/something-between-frownie-and-smiley/59125
+\newcommand{\Simley}[1]{%
+\begin{tikzpicture}[scale=0.11]
+    \newcommand*{\SmileyRadius}{3.0}%
+    \draw [fill=brown!10] (0,0) circle (\SmileyRadius)% outside circle
+        %node [yshift=-0.22*\SmileyRadius cm] {\tiny #1}% uncomment this to see the smile factor
+        ;
+
+    \pgfmathsetmacro{\eyeX}{0.5*\SmileyRadius*cos(30)}
+    \pgfmathsetmacro{\eyeY}{0.5*\SmileyRadius*sin(30)}
+    \draw [fill=cyan,draw=none] (\eyeX,\eyeY) circle (0.15cm);
+    \draw [fill=cyan,draw=none] (-\eyeX,\eyeY) circle (0.15cm);
+
+    \pgfmathsetmacro{\xScale}{2*\eyeX/180}
+    \pgfmathsetmacro{\yScale}{1.0*\eyeY}
+    \draw[color=red, domain=-\eyeX:\eyeX]
+        plot ({\x},{
+            -0.1+#1*0.15 % shift the smiley as smile decreases
+            -#1*1.75*\yScale*(sin((\x+\eyeX)/\xScale))-\eyeY});
+\end{tikzpicture}%
+}%
+
+\bigbreak
+\bigbreak
+\bigbreak
+
+ALL DONE \ \ \Simley{0} \Simley{0.1} \Simley{0.2} \Simley{0.3} \Simley{0.4} \Simley{0.5} \Simley{0.6} \Simley{0.7} \Simley{0.9} \Simley{0.9} \Simley{1} \ \ THANK YOU !!!!!!!!!!!!!!!!!!!!
+
 
 
 % \section{References}
