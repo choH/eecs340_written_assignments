@@ -57,6 +57,35 @@
 Set the each team as a node (vertex) in graph $G$ and make every node fully connected (representing the fact that all teams have played against each other). If one team $A$ beats another team $B$, we will have a directed edge of $A \rightarrow B$ betwen the nodes representing $A$ and $B$. A team's $z$ is set to be $\infty$ if such team has not won against any other team.
 
 \begin{algorithm}[H]
+\caption{DFS-Game-Visit(G, u)}
+    \begin{algorithmic}[1]
+        \Procedure{DFS-Game-Visit}{G, u}
+        \State $z = NULL$ \Comment{Potential $z$ value for this node, if not end of tree.}
+        \State $u.color$ = GRAY
+        \For{each $v \in Adj(u)$}:
+            \If{$v.color$ == WHITE}
+                \State $z = v.rank$ \Comment{If have decendent, set decedent's $rank$ as current's $z$.}
+                \State $z = \min(z, \textsc{DFS-Game-Visit(G, v)})$ \Comment{Find the lowest $z$ from all decendents.}
+            \Else
+                \State $z = \min(z, v.z)$ \Comment{Check if explored reachable nodes have lower $z$.}
+            \EndIf
+        \EndFor
+        \State $u.color$ = BLACK
+        \If{$z == NULL$} \Comment{If this node is end of tree.}
+            \State $u.z = \infty$ \Comment{Set $z$ to $\infty$ to indicate beats no one.}
+            \State $z = u.rank$ \Comment{For ancestor nodes to read its rank during recursion.}
+        \Else
+            \If{$u.z == NULL$}
+                \State $u.z = z$
+            \Else
+                \State $u.z = \min(u.z, z)$ \Comment{If node have been explored, check if the tree's $z$ is better.}
+            \EndIf
+        \EndIf
+        \State \Return $z$
+    \end{algorithmic}
+\end{algorithm}
+
+\begin{algorithm}[H]
 \caption{DFS(G)}
     \begin{algorithmic}[1]
         \Procedure{DFS}{G}
@@ -70,39 +99,12 @@ Set the each team as a node (vertex) in graph $G$ and make every node fully conn
             \EndIf
         \EndFor
         \For{each $u \in G.V$}:
-            \State print $u.team, u.z$
+            \State print $u.team, u.z$ \Comment{output all $z_i$.}
         \EndFor
     \end{algorithmic}
 \end{algorithm}
 
-\begin{algorithm}[H]
-\caption{DFS-Game-Visit(G, u)}
-    \begin{algorithmic}[1]
-        \Procedure{DFS-Game-Visit}{G, u}
-        \State $z = NULL$
-        \State $u.color$ = GRAY
-        \For{each $v \in Adj(u)$}:
-            \If{$v.color$ == WHITE}
-                \State $z = v.rank$
-                \State $z = \min(z, \textsc{DFS-Game-Visit(G, v)})$
-            \Else
-                \State $z = \min(z, v.z)$
-            \EndIf
-        \EndFor
-        \State $u.color$ = BLACK
-        \If{$z == NULL$}
-            \State $u.z = \infty$
-            \State $z = u.rank$
-        \Else
-            \If{$u.z == NULL$}
-                \State $u.z = z$
-            \Else
-                \State $u.z = \min(u.z, z)$
-            \EndIf
-        \EndIf
-        \State \Return $z$
-    \end{algorithmic}
-\end{algorithm}
+
 
 % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % %
 % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % %
